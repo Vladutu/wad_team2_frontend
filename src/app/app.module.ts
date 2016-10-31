@@ -4,10 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { DropdownDirective } from './dropdown.directive';
+import { ProfessorNavbarComponent } from './professor-navbar/professor-navbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DropdownDirective,
+    ProfessorNavbarComponent
   ],
   imports: [
     BrowserModule,
