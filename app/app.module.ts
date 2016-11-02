@@ -5,12 +5,14 @@ import {HttpModule} from "@angular/http";
 import {AppComponent} from "./app.component";
 import {DropdownDirective} from "./dropdown.directive";
 import {ProfessorNavbarComponent} from "./professor-navbar/professor-navbar.component";
+import {LoginComponent} from "./login/login.component";
 
 @NgModule({
     declarations: [
         AppComponent,
         DropdownDirective,
-        ProfessorNavbarComponent
+        ProfessorNavbarComponent,
+        LoginComponent
     ],
     imports: [
         BrowserModule,
