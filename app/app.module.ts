@@ -4,15 +4,17 @@ import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {AppComponent} from "./app.component";
 import {DropdownDirective} from "./dropdown.directive";
-import {ProfessorNavbarComponent} from "./professor-navbar/professor-navbar.component";
 import {LoginComponent} from "./login/login.component";
+import {SecretaryComponent} from "./secretary/secretary.component";
+import {SubgroupItemsComponent} from "./secretary/subgroup/subgroup-items.component";
 
 @NgModule({
     declarations: [
         AppComponent,
         DropdownDirective,
-        ProfessorNavbarComponent,
-        LoginComponent
+        LoginComponent,
+        SecretaryComponent,
+        SubgroupItemsComponent
     ],
     imports: [
         BrowserModule,
