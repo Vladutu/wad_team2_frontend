@@ -8,7 +8,7 @@
             <h3 class="panel-title">Subgroups</h3>
           </div>
           <div class="col col-xs-6 text-right">
-            <button type="button" class="btn btn-sm btn-primary btn-create">Create New</button>
+            <button type="button" class="btn btn-sm btn-primary btn-create" (click)="modal.open()">Create New</button>
           </div>
         </div>
       </div>
@@ -65,3 +65,13 @@
     </div>
   </div>
 </div>
+
+<modal #modal>
+  <modal-header [show-close]="true">
+    <h4 class="modal-title">I'm a modal!</h4>
+  </modal-header>
+  <modal-body>
+    Hello World!
+  </modal-body>
+  <modal-footer [show-default-buttons]="true"></modal-footer>
+</modal>

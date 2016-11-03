@@ -11,6 +11,7 @@ import {ProfessorListComponent} from "./secretary/professor-list/professor-list.
 import {StudentListComponent} from "./secretary/student-list/student-list.component";
 import {routing} from "./app.routes";
 import {ProfessorListGuard} from "./secretary/student-list/professor-list.guard";
+import {Ng2Bs3ModalModule} from "ng2-bs3-modal/ng2-bs3-modal";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {ProfessorListGuard} from "./secretary/student-list/professor-list.guard"
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    Ng2Bs3ModalModule
   ],
   providers: [ProfessorListGuard],
   bootstrap: [AppComponent]
