@@ -3,13 +3,10 @@ import {NgModule} from "@angular/core";
 import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {AppComponent} from "./app.component";
-import {LoginComponent} from "./login/login.component";
-import {SecretaryComponent} from "./secretary/secretary.component";
-import {DropdownDirective} from "./dropdown.directive";
-import {SubgroupListComponent} from "./secretary/subgroup-list/subgroup-list.component";
-import {routing} from "./app.routes";
-import { ProfessorListComponent } from './secretary/professor-list/professor-list.component';
-import { StudentListComponent } from './secretary/student-list/student-list.component';
+import { LoginComponent } from './login/login.component';
+import { SecretaryComponent } from './secretary/secretary.component';
+import { DropdownDirective } from './dropdown.directive';
+import { SubgroupListComponent } from './secretary/subgroup-list/subgroup-list.component';
 
 @NgModule({
   declarations: [
@@ -18,14 +15,11 @@ import { StudentListComponent } from './secretary/student-list/student-list.comp
     SecretaryComponent,
     DropdownDirective,
     SubgroupListComponent,
-    ProfessorListComponent,
-    StudentListComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
-    routing
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
