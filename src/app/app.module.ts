@@ -10,6 +10,7 @@ import {SubgroupListComponent} from "./secretary/subgroup-list/subgroup-list.com
 import {ProfessorListComponent} from "./secretary/professor-list/professor-list.component";
 import {StudentListComponent} from "./secretary/student-list/student-list.component";
 import {routing} from "./app.routes";
+import {ProfessorListGuard} from "./secretary/student-list/professor-list.guard";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import {routing} from "./app.routes";
     HttpModule,
     routing
   ],
-  providers: [],
+  providers: [ProfessorListGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {
