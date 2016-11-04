@@ -8,7 +8,8 @@
             <h3 class="panel-title">Subgroups</h3>
           </div>
           <div class="col col-xs-6 text-right">
-            <button type="button" class="btn btn-sm btn-primary btn-create">Create New</button>
+            <button type="button" class="btn btn-sm btn-primary btn-create" (click)="formModal.open('sm')">Create New
+            </button>
           </div>
         </div>
       </div>
@@ -57,3 +58,26 @@
     </div>
   </div>
 </div>
+
+<modal #formModal>
+  <form>
+    <modal-header [show-close]="true">
+      <h4 class="modal-title">Create new Subgroup</h4>
+    </modal-header>
+    <modal-body>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input #name type="text" class="form-control" name="name" id="name">
+      </div>
+    </modal-body>
+    <modal-footer>
+      <button type="button" class="btn btn-default" (click)="modal.close()">Cancel
+      </button>
+      <button type="button" class="btn btn-primary" (click)="onSave(name.value)">
+        Save
+      </button>
+    </modal-footer>
+  </form>
+</modal>
+
+<wad-loading-modal *ngIf="requesting"></wad-loading-modal>
