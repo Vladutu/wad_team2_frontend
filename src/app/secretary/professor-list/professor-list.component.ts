@@ -11,6 +11,8 @@ export class ProfessorListComponent implements OnInit {
   @ViewChild('modal')
   private modal: ModalComponent;
 
+  private requesting: boolean = false;
+
   constructor() {
   }
 
@@ -19,7 +21,12 @@ export class ProfessorListComponent implements OnInit {
 
   onSave(name: string) {
     console.log(name);
-    this.modal.close();
+    this.requesting = true;
+
+    setTimeout(()=> {
+      this.requesting = false;
+      this.modal.close();
+    }, 2000);
   }
 
 }

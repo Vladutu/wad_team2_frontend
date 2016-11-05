@@ -12,7 +12,7 @@ import {StudentListComponent} from "./secretary/student-list/student-list.compon
 import {routing} from "./app.routes";
 import {ProfessorListGuard} from "./secretary/student-list/professor-list.guard";
 import {Ng2Bs3ModalModule} from "ng2-bs3-modal/ng2-bs3-modal";
-import {LoadingModalComponent} from "./loading-modal/loading-modal.component";
+import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import {LoadingModalComponent} from "./loading-modal/loading-modal.component";
     SubgroupListComponent,
     ProfessorListComponent,
     StudentListComponent,
-    LoadingModalComponent,
+    LoadingOverlayComponent,
   ],
   imports: [
     BrowserModule,
