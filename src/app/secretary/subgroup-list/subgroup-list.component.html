@@ -59,12 +59,13 @@
   </div>
 </div>
 
-<modal #formModal>
+<modal #formModal [keyboard]="!requesting" [backdrop]="!requesting">
   <form>
     <modal-header [show-close]="true">
       <h4 class="modal-title">Create new Subgroup</h4>
     </modal-header>
     <modal-body>
+      <wad-loading [show]="requesting"></wad-loading>
       <div class="form-group">
         <label for="name">Name</label>
         <input #name type="text" class="form-control" name="name" id="name">
@@ -79,5 +80,3 @@
     </modal-footer>
   </form>
 </modal>
-
-<wad-loading-modal #loadingModal></wad-loading-modal>

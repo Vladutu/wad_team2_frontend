@@ -74,6 +74,7 @@
       <h4 class="modal-title">Add New Professor</h4>
     </modal-header>
     <modal-body>
+      <wad-loading [show]="requesting"></wad-loading>
       <div class="form-group">
         <label for="ssn">SSN</label>
         <input #name type="text" class="form-control" name="ssn" id="ssn">
