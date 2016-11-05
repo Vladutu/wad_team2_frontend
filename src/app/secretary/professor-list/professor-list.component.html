@@ -8,7 +8,9 @@
             <h3 class="panel-title">Subgroups</h3>
           </div>
           <div class="col col-xs-6 text-right">
-            <button type="button" class="btn btn-sm btn-primary btn-create">Create New</button>
+            <button type="button" class="btn btn-sm btn-primary btn-create" (click)="modal.open('lg')">Create
+              New
+            </button>
           </div>
         </div>
       </div>
@@ -65,3 +67,45 @@
     </div>
   </div>
 </div>
+
+<modal #modal>
+  <form>
+    <modal-header [show-close]="true">
+      <h4 class="modal-title">Add New Professor</h4>
+    </modal-header>
+    <modal-body>
+      <div class="form-group">
+        <label for="ssn">SSN</label>
+        <input #name type="text" class="form-control" name="ssn" id="ssn">
+      </div>
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input #name type="text" class="form-control" name="firstName" id="firstName">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input #name type="text" class="form-control" name="lastName" id="lastName">
+      </div>
+      <div class="form-group">
+        <label>Gender</label>
+        <div class="radio-inline">
+          <label><input type="radio" name="gender">Male</label>
+        </div>
+        <div class="radio-inline">
+          <label><input type="radio" name="gender">Female</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="position">Position</label>
+        <input #name type="text" class="form-control" name="position" id="position">
+      </div>
+    </modal-body>
+    <modal-footer>
+      <button type="button" class="btn btn-default" (click)="modal.close()">Cancel
+      </button>
+      <button type="button" class="btn btn-primary" (click)="onSave(name.value); name.value='';">
+        Save
+      </button>
+    </modal-footer>
+  </form>
+</modal>
