@@ -12,7 +12,8 @@ import {StudentListComponent} from "./secretary/student-list/student-list.compon
 import {routing} from "./app.routes";
 import {ProfessorListGuard} from "./secretary/student-list/professor-list.guard";
 import {Ng2Bs3ModalModule} from "ng2-bs3-modal/ng2-bs3-modal";
-import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
+import {LoadingOverlayComponent} from "./loading-overlay/loading-overlay.component";
+import {GridModule} from "@progress/kendo-angular-grid";
 
 @NgModule({
   declarations: [
@@ -23,14 +24,15 @@ import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.compo
     SubgroupListComponent,
     ProfessorListComponent,
     StudentListComponent,
-    LoadingOverlayComponent,
+    LoadingOverlayComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     routing,
-    Ng2Bs3ModalModule
+    Ng2Bs3ModalModule,
+    GridModule
   ],
   providers: [ProfessorListGuard],
   bootstrap: [AppComponent]
