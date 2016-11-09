@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PanelBarItemModel } from '@progress/kendo-angular-layout';
 
 @Component({
   selector: 'wad-task-list',
@@ -7,16 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaskListComponent implements OnInit {
 
-  private baseSportsIconUrl: string = "http://demos.telerik.com/kendo-ui/content/shared/icons/sports/";
-  private baseIconUrl: string = "http://demos.telerik.com/kendo-ui/content/shared/icons/16/";
-
-  private sportsIconUrl(imageName: string): string {
-    return this.baseSportsIconUrl + imageName + ".png";
-  }
-
-  private iconUrl(imageName: string): string {
-    return this.baseIconUrl + imageName + ".png";
-  }
+  private items: Array<PanelBarItemModel> = [
+    <PanelBarItemModel> {title: "Models and Algorithms for Parallel Computing"},
+    <PanelBarItemModel> {title: "Computer Networks Management", children: [
+      <PanelBarItemModel> {title: "Homework 1" }
+      ]
+    }
+  ];
 
   constructor() { }
 

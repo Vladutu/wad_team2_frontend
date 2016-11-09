@@ -1,14 +1,7 @@
 <div class="panelbar-wrapper">
-  <kendo-panelbar>
-    <kendo-panelbar-item title="Golf">
-      <kendo-panelbar-item title="Top News" ></kendo-panelbar-item>
-      <kendo-panelbar-item title="Photo Galleries" ></kendo-panelbar-item>
-      <kendo-panelbar-item title="Video Records" ></kendo-panelbar-item>
-      <kendo-panelbar-item title="Radio Records" ></kendo-panelbar-item>
-    </kendo-panelbar-item>
-    <kendo-panelbar-item title="Swimming" >
-      <kendo-panelbar-item title="Top News" ></kendo-panelbar-item>
-      <kendo-panelbar-item title="Photo Galleries" ></kendo-panelbar-item>
-    </kendo-panelbar-item>
+  <kendo-panelbar [items]="items">
+    <template PanelBarItemTemplate let-dataItem>
+      <div>Custom template: </div>{{dataItem.content}}
+    </template>
   </kendo-panelbar>
 </div>
