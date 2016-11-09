@@ -21,6 +21,10 @@ export class SubgroupListComponent implements OnInit {
 
   private gridView: GridDataResult;
 
+  private edit: boolean = false;
+
+  private selected: any = {id: 0, name: ""};
+
   constructor() {
   }
 
@@ -55,17 +59,31 @@ export class SubgroupListComponent implements OnInit {
         name: "CEN2.C"
       }
     ];
-
     this.loadSubgroups();
   }
 
-  onSave(): void {
+  onSave(name: string): void {
     this.requesting = true;
+
+    this.subgroups.push({id: 666, name: name});
 
     setTimeout(()=> {
       this.requesting = false;
       this.formModal.close();
+      this.loadSubgroups();
     }, 2000);
+  }
+
+  private onDelete(subgroup: any): void {
+    let id: number = this.subgroups.indexOf(subgroup);
+    this.subgroups.splice(id, 1);
+    this.loadSubgroups();
+  }
+
+  private onEdit(subgroup: any): void {
+    this.edit = true;
+    this.selected = subgroup;
+    this.formModal.open('md');
   }
 
   private sortChange(sort: SortDescriptor[]): void {
@@ -79,10 +97,5 @@ export class SubgroupListComponent implements OnInit {
       total: this.subgroups.length
     };
   }
-
-  private onDelete(subgroup: any): void {
-    console.log(subgroup);
-  }
-
 
 }

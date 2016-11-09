@@ -29,9 +29,13 @@
       </template>
     </kendo-grid-column>
     <kendo-grid-column field="name" title="Name"></kendo-grid-column>
-    <kendo-grid-column title="Options" [style]="{'text-align': 'center'}" [headerStyle]="{'text-align': 'center'}">
+    <kendo-grid-column [style]="{'text-align': 'center'}" [headerStyle]="{'text-align': 'center'}">
+      <template kendoHeaderTemplate>
+        <span class="glyphicon glyphicon-cog center-text"></span>
+      </template>
+      
       <template kendoCellTemplate let-dataItem>
-        <a class="btn btn-default"><span class="glyphicon glyphicon-edit center"></span></a>
+        <a class="btn btn-default"><span class="glyphicon glyphicon-edit center" (click)="onEdit(dataItem)"></span></a>
         <a class="btn btn-danger" (click)="onDelete(dataItem)"><span
           class="glyphicon glyphicon-trash center"></span></a>
       </template>
@@ -42,21 +46,19 @@
 <modal #formModal [keyboard]="!requesting" [backdrop]="!requesting">
   <form>
     <modal-header [show-close]="true">
-      <h4 class="modal-title">Create new Subgroup</h4>
+      <h4 class="modal-title" *ngIf="!edit">Create new Subgroup</h4>
+      <h4 class="modal-title" *ngIf="edit">Edit Subgroup</h4>
     </modal-header>
     <modal-body>
       <wad-loading [show]="requesting"></wad-loading>
       <div class="form-group">
         <label for="name">Name</label>
-        <input #name type="text" class="form-control" name="name" id="name">
+        <input #name type="text" class="form-control" name="name" id="name" [(ngModel)]="selected.name">
       </div>
     </modal-body>
     <modal-footer>
-      <button type="button" class="btn btn-default" (click)="formModal.close()">Cancel
-      </button>
-      <button type="button" class="btn btn-primary" (click)="onSave(name.value)">
-        Save
-      </button>
+      <button type="button" class="btn btn-default" (click)="formModal.close()">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="onSave(name.value)">Save</button>
     </modal-footer>
   </form>
 </modal>
