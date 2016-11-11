@@ -21,9 +21,6 @@ export class ProfessorListComponent implements OnInit {
 
   private gridView: GridDataResult;
 
-  private edit: boolean = false;
-
-  private selected: any = {id: 0, name: ""};
 
   constructor() {
   }
@@ -51,8 +48,7 @@ export class ProfessorListComponent implements OnInit {
     this.loadProfessors();
   }
 
-  onSave(name: string) {
-    console.log(name);
+  onSave() {
     this.requesting = true;
 
     setTimeout(()=> {
