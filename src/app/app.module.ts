@@ -14,9 +14,15 @@ import {ProfessorListGuard} from "./secretary/student-list/professor-list.guard"
 import {Ng2Bs3ModalModule} from "ng2-bs3-modal/ng2-bs3-modal";
 import {LoadingOverlayComponent} from "./loading-overlay/loading-overlay.component";
 import {GridModule} from "@progress/kendo-angular-grid";
-import { LayoutModule } from '@progress/kendo-angular-layout';
-import { StudentComponent } from './student/student.component';
-import { TaskListComponent } from './student/task-list/task-list.component';
+import {LayoutModule} from "@progress/kendo-angular-layout";
+import {StudentComponent} from "./student/student.component";
+import {TaskListComponent} from "./student/task-list/task-list.component";
+import {
+  PanelComponent,
+  PanelHeaderComponent,
+  PanelBodyComponent,
+  PanelGroupComponent
+} from "./collapsible-panel/panel.component";
 
 @NgModule({
   declarations: [
@@ -29,7 +35,11 @@ import { TaskListComponent } from './student/task-list/task-list.component';
     ProfessorListComponent,
     StudentListComponent,
     LoadingOverlayComponent,
-    TaskListComponent
+    TaskListComponent,
+    PanelComponent,
+    PanelHeaderComponent,
+    PanelBodyComponent,
+    PanelGroupComponent
   ],
   imports: [
     BrowserModule,
