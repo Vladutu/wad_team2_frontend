@@ -1,67 +1,96 @@
 <div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    
-    <div class="panel panel-default panel-table">
-      <div class="panel-heading">
-        <div class="row">
-          <div class="col col-xs-6">
-            <h3 class="panel-title">Subgroups</h3>
-          </div>
-          <div class="col col-xs-6 text-right">
-            <button type="button" class="btn btn-sm btn-primary btn-create">Create New</button>
-          </div>
+  <div class="panel panel-default panel-table">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col col-xs-6">
+          <h3 class="panel-title">Students</h3>
         </div>
-      </div>
-      <div class="panel-body">
-        <table class="table table-striped table-bordered table-list">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>SSN</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Gender</th>
-              <th>Subgroup</th>
-              <th><span class="glyphicon glyphicon-cog center-text"></span></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="hidden-xs">1</td>
-              <td>1840605160054</td>
-              <td>Marius</td>
-              <td>Brezovan</td>
-              <td>Male</td>
-              <td>CEN4.S1</td>
-              <td align="center">
-                <a class="btn btn-default"><span class="glyphicon glyphicon-edit center"></span></a>
-                <a class="btn btn-danger"><span class="glyphicon glyphicon-trash center"></span></a>
-              </td>
-            
-            </tr>
-          </tbody>
-        </table>
-      
-      </div>
-      <div class="panel-footer">
-        <div class="row">
-          <div class="col col-xs-4">Page 1 of 5
-          </div>
-          <div class="col col-xs-8">
-            <ul class="pagination hidden-xs pull-right">
-              <li class="active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-            </ul>
-            <ul class="pagination visible-xs pull-right">
-              <li><a href="#">«</a></li>
-              <li><a href="#">»</a></li>
-            </ul>
-          </div>
+        <div class="col col-xs-6 text-right">
+          <button type="button" class="btn btn-sm btn-primary btn-create" (click)="formModal.open('md')">Create New
+          </button>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<div class="row">
+  <kendo-grid
+    [data]="gridView"
+    [height]="300"
+    [scrollable]="scrollable"
+    [sort]="sort"
+    [sortable]="{mode: 'multiple'}"
+    (sortChange)="sortChange($event)"
+  >
+    <kendo-grid-column title="ID">
+      <template kendoCellTemplate let-rowIndex="rowIndex">
+        {{rowIndex + 1}}
+      </template>
+    </kendo-grid-column>
+    <kendo-grid-column field="ssn" title="SSN"></kendo-grid-column>
+    <kendo-grid-column field="firstName" title="FIrst Name"></kendo-grid-column>
+    <kendo-grid-column field="lastName" title="Last Name"></kendo-grid-column>
+    <kendo-grid-column field="gender" title="Gender"></kendo-grid-column>
+    <kendo-grid-column field="subgroup" title="Subgroup"></kendo-grid-column>
+    <kendo-grid-column [style]="{'text-align': 'center'}" [headerStyle]="{'text-align': 'center'}">
+      <template kendoHeaderTemplate>
+        <span class="glyphicon glyphicon-cog center-text"></span>
+      </template>
+      
+      <template kendoCellTemplate let-dataItem>
+        <a class="btn btn-default"><span class="glyphicon glyphicon-edit center" (click)="onEdit(dataItem)"></span></a>
+        <a class="btn btn-danger" (click)="onDelete(dataItem)"><span
+          class="glyphicon glyphicon-trash center"></span></a>
+      </template>
+    </kendo-grid-column>
+  </kendo-grid>
+</div>
+
+<modal #formModal>
+  <form>
+    <modal-header [show-close]="true">
+      <h4 class="modal-title">Add New Student</h4>
+    </modal-header>
+    <modal-body>
+      <wad-loading [show]="requesting"></wad-loading>
+      <div class="form-group">
+        <label for="ssn">SSN</label>
+        <input #ssn type="text" class="form-control" name="ssn" id="ssn">
+      </div>
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input #firstName type="text" class="form-control" name="firstName" id="firstName">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input #lastName type="text" class="form-control" name="lastName" id="lastName">
+      </div>
+      <div class="form-group">
+        <label>Gender</label>
+        <div class="radio-inline">
+          <label><input type="radio" name="gender">Male</label>
+        </div>
+        <div class="radio-inline">
+          <label><input type="radio" name="gender">Female</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Subgroup</label>
+        <select class="form-control">
+          <option>CEN4.S1</option>
+          <option>CEN4.S2</option>
+          <option>CEN3.A</option>
+          <option>CEN3.B</option>
+        </select>
+      </div>
+    </modal-body>
+    <modal-footer>
+      <button type="button" class="btn btn-default" (click)="modal.close()">Cancel
+      </button>
+      <button type="button" class="btn btn-primary" (click)="onSave()">
+        Save
+      </button>
+    </modal-footer>
+  </form>
+</modal>

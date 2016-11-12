@@ -21,7 +21,6 @@ export class ProfessorListComponent implements OnInit {
 
   private gridView: GridDataResult;
 
-
   constructor() {
   }
 
