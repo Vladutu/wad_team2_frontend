@@ -25,6 +25,7 @@ import {
   PanelBodyComponent,
   PanelGroupComponent
 } from "./collapsible-panel/panel.component";
+import { TaskDetailsComponent } from './student/task-details/task-details.component';
 
 @NgModule({
   declarations: [
