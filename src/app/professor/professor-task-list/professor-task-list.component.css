@@ -1,5 +1,30 @@
 /* Footer Font Size */
 
 .footer-small {
-  font-size: 13px
+  font-size: 13px;
+}
+
+.textarea-description {
+  height: 200px;
+}
+
+.input-deadline {
+  margin-left: 10px;
+}
+
+.bottom-padding {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+}
+
+.top-padding {
+  margin-top: 20px;
+}
+
+.comp-left {
+  float: left;
+}
+
+.comp-right {
+  float: left;
 }

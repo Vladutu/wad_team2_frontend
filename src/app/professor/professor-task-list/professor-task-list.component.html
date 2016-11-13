@@ -17,10 +17,10 @@
     <wad-panel-header>
       Formal Languages and Automata
       <div class="btn-group btn-group-xs pull-right">
-        <button type="button" class="label label-primary">Add new</button>
+        <button type="button" class="label label-primary" (click)="formModal.open('md')">Add new</button>
       </div>
     </wad-panel-header>
-    
+
     <!--Body contains all the tasks of the respective topic-->
     <wad-panel-body>
       <!--One panel represents a Task-->
@@ -35,7 +35,7 @@
       </div>
     </wad-panel-body>
   </wad-panel>
-  
+
   <wad-panel>
     <wad-panel-header>
       Real Time Computing Systems
@@ -56,7 +56,7 @@
       </div>
     </wad-panel-body>
   </wad-panel>
-  
+
   <wad-panel>
     <wad-panel-header>
       Computer Networks Management
@@ -86,3 +86,55 @@
   <p>Contact information: <a href="mailto:help@eapp.com">
     help@eapp.com</a>.</p>
 </footer>
+
+
+<modal #formModal [keyboard]="!requesting" [backdrop]="!requesting">
+  <form>
+    <modal-header [show-close]="true">
+      <h4 class="modal-title">Add new task</h4>
+    </modal-header>
+    <modal-body>
+      <wad-loading [show]="requesting"></wad-loading>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input #name type="text" class="form-control" name="name" id="name">
+      </div>
+
+      <div class="form-group">
+        <label for="name">Description</label>
+        <textarea #description type="text" class="form-control textarea-description" name="name" id="description"></textarea>
+      </div>
+
+      <div class="form-group bottom-padding">
+        <div class="pull-left">
+          <label for="name">Deadline</label>
+          <input #deadline class="input-deadline" type="date" name="deadline">
+        </div>
+
+        <div class="pull-right">
+          <label for="name">Language</label>
+          <select>
+            <option value="java">Java</option>
+            <option value="python">Python</option>
+            <option value="c">C</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group bottom-padding">
+        <div class="pull-left top-padding">
+          <label><input type="checkbox" value="">Enable Tests</label>
+        </div>
+
+        <div class="pull-right top-padding" *ngIf="autoTests">
+          <input id="input-1a" type="file" class="file" data-show-preview="false">
+        </div>
+      </div>
+
+    </modal-body>
+    <modal-footer>
+      <button type="button" class="btn btn-default" (click)="formModal.close()">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="onSave(name.value)">Save</button>
+    </modal-footer>
+  </form>
+</modal>
