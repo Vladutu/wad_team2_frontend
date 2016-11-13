@@ -3,8 +3,8 @@ import {Component, OnInit, style, state, animate, transition, trigger} from "@an
 @Component({
   selector: 'wad-panel',
   template: `
-   <div class="panel panel-default" (click)="toggleState()">
-    <div class="panel-heading">
+   <div class="panel panel-default" >
+    <div class="panel-heading  cursor-hand" (click)="toggleState()">
       <h4 class="panel-title">
         <a>
           <ng-content select="wad-panel-header"></ng-content>
