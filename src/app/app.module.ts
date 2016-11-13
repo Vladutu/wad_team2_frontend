@@ -16,14 +16,15 @@ import {LoadingOverlayComponent} from "./loading-overlay/loading-overlay.compone
 import {GridModule} from "@progress/kendo-angular-grid";
 import {LayoutModule} from "@progress/kendo-angular-layout";
 import {StudentComponent} from "./student/student.component";
-import {TaskListComponent} from "./student/task-list/task-list.component";
+import {StudentTaskListComponent} from "./student/student-task-list/student-task-list.component";
+import {ProfessorComponent} from './professor/professor.component';
+import {ProfessorTaskListComponent} from './professor/professor-task-list/professor-task-list.component';
 import {
   PanelComponent,
   PanelHeaderComponent,
   PanelBodyComponent,
   PanelGroupComponent
 } from "./collapsible-panel/panel.component";
-import { TaskDetailsComponent } from './student/task-details/task-details.component';
 
 @NgModule({
   declarations: [
@@ -36,12 +37,13 @@ import { TaskDetailsComponent } from './student/task-details/task-details.compon
     ProfessorListComponent,
     StudentListComponent,
     LoadingOverlayComponent,
-    TaskListComponent,
+    StudentTaskListComponent,
     PanelComponent,
     PanelHeaderComponent,
     PanelBodyComponent,
     PanelGroupComponent,
-    TaskDetailsComponent
+    ProfessorComponent,
+    ProfessorTaskListComponent
   ],
   imports: [
     BrowserModule,

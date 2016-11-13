@@ -4,11 +4,9 @@ import {Component, OnInit, style, state, animate, transition, trigger} from "@an
   selector: 'wad-panel',
   template: `
    <div class="panel panel-default" >
-    <div class="panel-heading  cursor-hand" (click)="toggleState()">
+    <div class="panel-heading  cursor-hand" (click)="toggleState($event)">
       <h4 class="panel-title">
-        <a>
-          <ng-content select="wad-panel-header"></ng-content>
-        </a>
+        <ng-content select="wad-panel-header"></ng-content>
       </h4>
     </div>
     
@@ -34,8 +32,6 @@ export class PanelComponent implements OnInit {
 
   private collapsed: boolean = true;
 
-  private collapsing: boolean = false;
-
   private stateExpression: string = "collapsed";
 
   constructor() {
@@ -44,7 +40,11 @@ export class PanelComponent implements OnInit {
   ngOnInit() {
   }
 
-  toggleState(): void {
+  toggleState(event: MouseEvent): void {
+    if (event.toElement.tagName == "BUTTON") {
+      return;
+    }
+
     if (this.stateExpression == "expanded") {
       this.stateExpression = "collapsed";
     }

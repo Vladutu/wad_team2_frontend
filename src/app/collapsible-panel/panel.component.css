@@ -8,6 +8,7 @@ body {
 
 .panel-body {
   padding: 0px;
+  border-bottom-style: inset;
 }
 
 .panel-default {
@@ -22,6 +23,6 @@ body {
   margin-bottom: 0px;
 }
 
-.cursor-hand{
+.cursor-hand {
   cursor: pointer;
 }
