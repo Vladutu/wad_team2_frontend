@@ -10,6 +10,10 @@ body {
   padding: 0px;
 }
 
+.panel-default {
+  margin-top: 5px;
+}
+
 .panel-body table tr td {
   padding-left: 15px;
 }

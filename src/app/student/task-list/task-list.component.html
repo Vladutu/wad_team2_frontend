@@ -1,7 +1,92 @@
-<div class="panelbar-wrapper">
-  <kendo-panelbar [items]="items">
-    <template PanelBarItemTemplate let-dataItem>
-      <div>Custom template: </div>{{dataItem.content}}
-    </template>
-  </kendo-panelbar>
-</div>
+<wad-panel-group>
+  <!--Each wad-panel represents a Topic-->
+  <wad-panel>
+    <!--Header is the title of the Topic-->
+    <wad-panel-header>
+    Formal Languages and Automata
+    </wad-panel-header>
+
+    <!--Body contains all the tasks of the respective topic-->
+    <wad-panel-body>
+      <!--One panel represents a Task-->
+      <div class="panel panel-default">
+        <div class="panel-body panel-task">Homework 1 - Hello World
+          <div class="btn-group btn-group-xs pull-right">
+            <span class="label label-default">Solution Rejected</span>
+            <span class="label label-danger">Deadline:  11/10/2016</span>
+            <span class="label label-warning">Score 76/100</span>
+          </div>
+        </div>
+
+        <div class="panel-body panel-task">Homework 2 - Dijkstra's algorithm
+          <div class="btn-group btn-group-xs pull-right">
+            <span class="label label-primary">Solution Accepted</span>
+            <span class="label label-success">Deadline:  11/10/2016</span>
+            <span class="label label-warning">Score 89/100</span>
+          </div>
+        </div>
+      </div>
+    </wad-panel-body>
+  </wad-panel>
+
+  <wad-panel>
+    <wad-panel-header>
+    Real Time Computing Systems
+    </wad-panel-header>
+    <wad-panel-body>
+      <!--One panel represents a Task-->
+      <div class="panel panel-default">
+        <div class="panel-body panel-task">Homework 1 - Random Generator
+          <div class="btn-group btn-group-xs pull-right">
+            <span class="label label-primary">Solution Accepted</span>
+            <span class="label label-success">Deadline:  16/11/2016</span>
+            <span class="label label-warning">Score 100/100</span>
+          </div>
+        </div>
+
+        <div class="panel-body panel-task">Homework 2 - State Machine
+          <div class="btn-group btn-group-xs pull-right">
+            <span class="label label-danger">Plagiarism Detected</span>
+            <span class="label label-primary">Solution Rejected</span>
+            <span class="label label-success">Deadline:  20/11/2016</span>
+            <span class="label label-warning"> Score 0/100 </span>
+          </div>
+        </div>
+      </div>
+    </wad-panel-body>
+  </wad-panel>
+
+  <wad-panel>
+    <wad-panel-header>
+      Computer Networks Management
+    </wad-panel-header>
+    <wad-panel-body>
+      <!--One panel represents a Task-->
+      <div class="panel panel-default">
+        <div class="panel-body panel-task">Homework 1 - Setting up a network using Cisco PKT
+          <div class="btn-group btn-group-xs pull-right">
+            <span class="label label-default">Solution Accepted</span>
+            <span class="label label-danger">Deadline:  none</span>
+            <span class="label label-warning">Score 100/100</span>
+          </div>
+        </div>
+
+        <div class="panel-body panel-task">Homework 2 - Configuring a DNS Server in your network
+          <div class="btn-group btn-group-xs pull-right">
+            <span class="label label-primary">Solution Accepted</span>
+            <span class="label label-success">Deadline:  none</span>
+            <span class="label label-warning">Score 89/100</span>
+          </div>
+        </div>
+      </div>
+    </wad-panel-body>
+  </wad-panel>
+
+</wad-panel-group>
+
+<footer class="footer-small">
+  <p>This are all your tasks for the current semester.</p>
+  <p>Please be responsible with each deadline as the platform will prevent uploading solutions to tasks that have passed their deadline.</p>
+  <p>Contact information: <a href="mailto:help@eapp.com">
+    help@eapp.com</a>.</p>
+</footer>
