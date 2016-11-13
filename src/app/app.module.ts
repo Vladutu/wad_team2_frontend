@@ -44,7 +44,8 @@ import { TaskDetailsComponent } from './student/task-details/task-details.compon
     PanelBodyComponent,
     PanelGroupComponent,
     ProfessorComponent,
-    ProfessorTaskListComponent
+    ProfessorTaskListComponent,
+    TaskDetailsComponent
   ],
   imports: [
     BrowserModule,
