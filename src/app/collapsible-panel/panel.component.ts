@@ -34,8 +34,6 @@ export class PanelComponent implements OnInit {
 
   private collapsed: boolean = true;
 
-  private collapsing: boolean = false;
-
   private stateExpression: string = "collapsed";
 
   constructor() {
