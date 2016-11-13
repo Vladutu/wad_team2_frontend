@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from "@angular/core";
 import {ModalComponent} from "ng2-bs3-modal/components/modal";
 
 @Component({
@@ -13,9 +13,23 @@ export class ProfessorTaskListComponent implements OnInit {
   private requesting: boolean = false;
   private autoTests: boolean = false;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
+  }
+
+  toggleTests() {
+    this.autoTests = !this.autoTests;
+  }
+
+  onSave() {
+    this.requesting = true;
+
+    setTimeout(()=> {
+      this.requesting = false;
+      this.formModal.close();
+    }, 2000);
   }
 
 }
