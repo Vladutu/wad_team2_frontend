@@ -1,0 +1,57 @@
+<div id="wad-task-details">
+    <div class="jumbotron wad-task-details-header">
+        <div class="container">
+            <h2>Dijkstra's algorithm</h2>
+            <p>
+                Dijkstra's algorithm is an algorithm for finding the shortest paths between nodes in a graph,
+                which may represent, for example, road networks.For a given source node in the graph, the 
+                algorithm finds the shortest path between that node and every other.[3]:196–206 It can also 
+                be used for finding the shortest paths from a single node to a single destination node by 
+                stopping the algorithm once the shortest path to the destination node has been determined.
+            </p>
+        </div>
+    </div>
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row wad-row">
+                <div class="col-md-12">
+                    <h3>Request: </h3>
+                    <p>Implement Dijkstra's algorithm on multiple threads</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-2 no-padding-right">
+                <li class="list-group-item list-group-item-danger">
+                    <div class="wad-list-item-headline">Deadline: </div> 
+                    <div>11/10/2016</div>
+                </li>
+            </div>
+            <div class="col-md-2 no-padding">
+                <li class="list-group-item list-group-item-info">
+                    <div class="wad-list-item-headline">Language: </div>
+                    <div>C/C++</div>
+                </li>
+            </div>
+            <div class="col-md-2 no-padding">
+                <li class="list-group-item list-group-item-warning">
+                    <div class="wad-list-item-headline">Score: </div>
+                    <div>89/100</div>
+                </li>
+            </div>
+            <div class="col-md-6">
+<!--                <div class="fileUpload btn btn-primary cursor-not-allowed">
+                    <span class="cursor-not-allowed">Upload Solution</span>
+                    <input type="file" class="upload cursor-not-allowed" (click)="onUploadTask()"/>
+                </div>-->
+                <div class="fileUpload btn btn-primary">
+                    <span>Upload Solution</span>
+                    <input type="file" class="upload" [disabled] = "plagiarism" [ngClass]="{'cursor-not-allowed':'plagiarism'}"/>
+                </div>
+                <div class="wad-notification wad-warning-notification" id="wad-plagiarism-notification">You cannot submit a solution. Your previous solution is plagiarized</div>
+            </div>
+        </div>
+    </div>
+</div>

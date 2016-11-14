@@ -34,3 +34,6 @@ testem.log
 Thumbs.db
 nbproject/private/private.properties
 nbproject/private/private.xml
+nbproject
+nbproject/project.properties
+nbproject/project.xml
