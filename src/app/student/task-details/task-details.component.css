@@ -1,7 +1,16 @@
+body {
+    background-color: #e9ebee;
+}
 .jumbotron p, .wad-task-container p {
     font-size: 20px
 }
-
+.jumbotron {
+    background-color: white;
+    border-radius: 0;
+}
+.wad-task-details-header {
+    margin-top:30px;
+}
 .wad-task-container {
     padding-left: 60px;
     padding-right: 60px;
@@ -10,6 +19,8 @@
     position: relative;
     overflow: hidden;
     margin: 10px;
+    float: right;
+    border-radius: 2px;
 }
 .fileUpload input.upload {
     position: absolute;
@@ -21,4 +32,31 @@
     cursor: pointer;
     opacity: 0;
     filter: alpha(opacity=0);
+}
+.cursor-not-allowed {
+    cursor: not-allowed !important;
+}
+.wad-warning-notification {
+    color: #ed3f7e;
+}
+#wad-plagiarism-notification{
+    float: right;
+}
+.wad-row {
+    margin-bottom: 30px;
+}
+.list-group-item {
+    text-align: center;
+}
+
+.wad-list-item-headline {
+    font-size: 21px;
+}
+
+.no-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+.no-padding-right{
+    padding-right: 0;
 }
