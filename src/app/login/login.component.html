@@ -4,10 +4,10 @@
       <div class="account-wall">
         <img class="profile-img" src="../assets/images/logo.png"
              alt="">
-        <form class="form-signin">
-          <input type="text" class="form-control" placeholder="Username" required autofocus>
-          <input type="password" class="form-control" placeholder="Password" required>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">
+        <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <input type="text" class="form-control" placeholder="Username" formControlName="username">
+          <input type="password" class="form-control" placeholder="Password" formControlName="password">
+          <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!loginForm.valid">
             Sign in
           </button>
         </form>
