@@ -1,6 +1,5 @@
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
-import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {AppComponent} from "./app.component";
 import {LoginComponent} from "./login/login.component";
@@ -17,15 +16,17 @@ import {GridModule} from "@progress/kendo-angular-grid";
 import {LayoutModule} from "@progress/kendo-angular-layout";
 import {StudentComponent} from "./student/student.component";
 import {StudentTaskListComponent} from "./student/student-task-list/student-task-list.component";
-import {ProfessorComponent} from './professor/professor.component';
-import {ProfessorTaskListComponent} from './professor/professor-task-list/professor-task-list.component';
+import {ProfessorComponent} from "./professor/professor.component";
+import {ProfessorTaskListComponent} from "./professor/professor-task-list/professor-task-list.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {
   PanelComponent,
   PanelHeaderComponent,
   PanelBodyComponent,
   PanelGroupComponent
 } from "./collapsible-panel/panel.component";
-import { TaskDetailsComponent } from './student/task-details/task-details.component';
+import {TaskDetailsComponent} from "./student/task-details/task-details.component";
+import {LoginService} from "./service/login.service";
 
 @NgModule({
   declarations: [
@@ -45,18 +46,19 @@ import { TaskDetailsComponent } from './student/task-details/task-details.compon
     PanelGroupComponent,
     ProfessorComponent,
     ProfessorTaskListComponent,
-    TaskDetailsComponent
+    TaskDetailsComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     LayoutModule,
     HttpModule,
     routing,
     Ng2Bs3ModalModule,
     GridModule
   ],
-  providers: [ProfessorListGuard],
+  providers: [ProfessorListGuard, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
