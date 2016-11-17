@@ -15,6 +15,9 @@ export class LoginComponent implements OnInit {
 
   private userLogin: UserLogin = null;
 
+  private error: boolean = false;
+
+
   constructor(private loginService: LoginService, private router: Router) {
   }
 
@@ -29,12 +32,18 @@ export class LoginComponent implements OnInit {
     this.userLogin = this.loginForm.value;
     this.loginService.authenticate(this.userLogin)
       .subscribe((user: User)=> {
-        localStorage.removeItem('auth');
-        localStorage.setItem('auth', JSON.stringify(user));
+          localStorage.removeItem('auth');
+          localStorage.setItem('auth', JSON.stringify(user));
 
-        let path: string = "/" + user.role.toLowerCase();
-        this.router.navigate([path]);
-      })
+          let path: string = "/" + user.role.toLowerCase();
+          this.router.navigate([path]);
+        },
+        error => {
+          this.error = true;
+          setTimeout(()=> {
+            this.error = false;
+          }, 2000)
+        })
   }
 
 }

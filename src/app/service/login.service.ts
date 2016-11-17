@@ -1,8 +1,9 @@
 import {Injectable} from "@angular/core";
 import {UserLogin, User} from "../model/models";
-import {Http} from "@angular/http";
+import {Http, Response} from "@angular/http";
 import "rxjs/Rx";
 import {Observable} from "rxjs";
+import {BASE_URL} from "./server";
 
 @Injectable()
 export class LoginService {
@@ -11,6 +12,10 @@ export class LoginService {
   }
 
   public authenticate(userLogin: UserLogin) {
-    return Observable.of(new User("vpaun", "1940826160043", 1, "Victor", "Paun", "victor20@yahoo.com", "MALE", "STUDENT"));
+    let url: string = BASE_URL + "/login";
+
+    return this.http.post(url, userLogin)
+      .map((response: Response)=>(<User>response.json()))
+      .catch(error => Observable.throw(error.json()));
   }
 }
