@@ -2,6 +2,9 @@ import {Component, OnInit, ViewChild} from "@angular/core";
 import {ModalComponent} from "ng2-bs3-modal/components/modal";
 import {SortDescriptor, orderBy} from "@progress/kendo-data-query";
 import {GridDataResult} from "@progress/kendo-angular-grid";
+import {Subgroup, ESSubgroup} from "../../model/models";
+import {SubgroupService} from "../../service/subgroup.service";
+import {FormGroup, FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'wad-subgroup-list',
@@ -15,7 +18,7 @@ export class SubgroupListComponent implements OnInit {
 
   private requesting: boolean = false;
 
-  private subgroups: any[] = [];
+  private subgroups: Subgroup[] = [];
 
   private sort: SortDescriptor[] = [];
 
@@ -23,79 +26,104 @@ export class SubgroupListComponent implements OnInit {
 
   private edit: boolean = false;
 
-  private selected: any = {id: 0, name: ""};
+  private subgroupForm: FormGroup;
 
-  constructor() {
+  private selected: Subgroup = null;
+
+  constructor(private subgroupService: SubgroupService) {
   }
 
   ngOnInit() {
-    this.subgroups = [
-      {
-        id: 154,
-        name: "CEN4.S1"
-      },
-      {
-        id: 2362,
-        name: "CEN4.S2"
-      },
-      {
-        id: 3573,
-        name: "CEN3.S1"
-      },
-      {
-        id: 4712,
-        name: "CEN3.S2"
-      },
-      {
-        id: 5751,
-        name: "CEN2.A"
-      },
-      {
-        id: 631,
-        name: "CEN2.B"
-      },
-      {
-        id: 7731,
-        name: "CEN2.C"
-      }
-    ];
-    this.loadSubgroups();
+    this.loadSubgroupsFromService();
+    this.subgroupForm = new FormGroup({
+      'name': new FormControl('', [Validators.required])
+    });
   }
 
-  onSave(name: string): void {
+  onFormSubmit() {
+    if (!this.edit) {
+      this.saveSubgroup();
+    }
+    else {
+      this.editSubgroup();
+    }
+  }
+
+  private editSubgroup() {
     this.requesting = true;
+    let toBeUpdated: ESSubgroup = new ESSubgroup(this.subgroupForm.value.name);
 
-    this.subgroups.push({id: 666, name: name});
-
-    setTimeout(()=> {
-      this.requesting = false;
-      this.formModal.close();
-      this.loadSubgroups();
-    }, 2000);
+    this.subgroupService.edit(this.selected.id, toBeUpdated)
+      .subscribe((edited: Subgroup)=> {
+        this.closeModal();
+        this.loadSubgroupsFromService();
+        this.edit = false;
+      }, error=> {
+        console.log(error);
+        this.closeModal();
+        this.edit = false;
+      })
   }
 
-  private onDelete(subgroup: any): void {
-    let id: number = this.subgroups.indexOf(subgroup);
-    this.subgroups.splice(id, 1);
-    this.loadSubgroups();
+  private saveSubgroup() {
+    this.requesting = true;
+    let toBeSaved: ESSubgroup = new ESSubgroup(this.subgroupForm.value.name);
+
+    this.subgroupService.save(toBeSaved)
+      .subscribe((saved: Subgroup)=> {
+        this.closeModal();
+        this.loadSubgroupsFromService();
+      }, error=> {
+        console.log(error);
+        this.closeModal();
+      });
   }
 
-  private onEdit(subgroup: any): void {
+
+  private closeModal() {
+    this.requesting = false;
+    this.formModal.close();
+    this.subgroupForm.reset();
+  }
+
+  private onDelete(subgroup: Subgroup): void {
+    this.subgroupService.delete(subgroup.id)
+      .subscribe((deleted: Subgroup)=> {
+        this.loadSubgroupsFromService();
+      }, error=> {
+        console.log(error);
+      });
+    this.loadSubgroupsFromService();
+  }
+
+  private onEdit(subgroup: Subgroup): void {
     this.edit = true;
     this.selected = subgroup;
+    this.subgroupForm.reset({name: subgroup.name});
     this.formModal.open('md');
   }
 
   private sortChange(sort: SortDescriptor[]): void {
     this.sort = sort;
-    this.loadSubgroups();
+    this.loadSubgroupsOnGrid();
   }
 
-  private loadSubgroups(): void {
+  private loadSubgroupsOnGrid(): void {
     this.gridView = {
       data: orderBy(this.subgroups, this.sort),
       total: this.subgroups.length
     };
+  }
+
+  private loadSubgroupsFromService(): void {
+    this.subgroupService.getAll()
+      .subscribe((subgroups: Subgroup[])=> {
+          this.subgroups = subgroups;
+          this.loadSubgroupsOnGrid();
+        },
+        error => {
+          console.log(error);
+        });
   }
 
 }

@@ -27,6 +27,7 @@ import {
 } from "./collapsible-panel/panel.component";
 import {TaskDetailsComponent} from "./student/task-details/task-details.component";
 import {LoginService} from "./service/login.service";
+import {SubgroupService} from "./service/subgroup.service";
 
 @NgModule({
   declarations: [
@@ -58,7 +59,7 @@ import {LoginService} from "./service/login.service";
     Ng2Bs3ModalModule,
     GridModule
   ],
-  providers: [ProfessorListGuard, LoginService],
+  providers: [ProfessorListGuard, LoginService, SubgroupService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

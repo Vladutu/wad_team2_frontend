@@ -44,21 +44,22 @@
 </div>
 
 <modal #formModal [keyboard]="!requesting" [backdrop]="!requesting">
-  <form>
+  <form [formGroup]="subgroupForm" (ngSubmit)="onFormSubmit()">
     <modal-header [show-close]="true">
-      <h4 class="modal-title" *ngIf="!edit">Create new Subgroup</h4>
+      <h4 class="modal-title" *ngIf="!edit">Add new Subgroup</h4>
       <h4 class="modal-title" *ngIf="edit">Edit Subgroup</h4>
     </modal-header>
     <modal-body>
       <wad-loading [show]="requesting"></wad-loading>
       <div class="form-group">
         <label for="name">Name</label>
-        <input #name type="text" class="form-control" name="name" id="name" [(ngModel)]="selected.name">
+        <input type="text" class="form-control" name="name" id="name" formControlName="name">
       </div>
     </modal-body>
     <modal-footer>
       <button type="button" class="btn btn-default" (click)="formModal.close()">Cancel</button>
-      <button type="button" class="btn btn-primary" (click)="onSave(name.value)">Save</button>
+      <button type="submit" class="btn btn-primary" *ngIf="!edit" [disabled]="!subgroupForm.valid">Save</button>
+      <button type="submit" class="btn btn-primary" *ngIf="edit" [disabled]="!subgroupForm.valid">Edit</button>
     </modal-footer>
   </form>
 </modal>

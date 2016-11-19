@@ -9,3 +9,15 @@ export class User {
               public authorization: string) {
   }
 }
+
+export class Subgroup {
+  constructor(public id: number, public name: string) {
+
+  }
+}
+
+export class ESSubgroup {
+  constructor(public name: string) {
+
+  }
+}
