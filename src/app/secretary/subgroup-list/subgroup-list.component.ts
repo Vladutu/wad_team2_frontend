@@ -81,9 +81,14 @@ export class SubgroupListComponent implements OnInit {
 
 
   private closeModal() {
-    this.requesting = false;
+    this.dismissModal();
     this.formModal.close();
+  }
+
+  private dismissModal() {
+    this.requesting = false;
     this.subgroupForm.reset();
+    this.edit = false;
   }
 
   private onDelete(subgroup: Subgroup): void {
