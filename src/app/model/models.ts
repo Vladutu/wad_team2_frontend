@@ -21,3 +21,17 @@ export class ESSubgroup {
 
   }
 }
+
+export class Professor {
+  constructor(public id: number, public firstName: string, public lastName: string, public ssn: string, public gender: string,
+              public email: string, public username: string, public position: string) {
+
+  }
+}
+
+export class ESProfessor {
+  constructor(public firstName: string, public lastName: string, public ssn: string, public gender: string,
+              public email: string, public position: string) {
+
+  }
+}

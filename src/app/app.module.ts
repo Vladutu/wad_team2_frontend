@@ -28,6 +28,8 @@ import {
 import {TaskDetailsComponent} from "./student/task-details/task-details.component";
 import {LoginService} from "./service/login.service";
 import {SubgroupService} from "./service/subgroup.service";
+import {ProfessorService} from "./service/professor.service";
+import {ESProfessorBuilder} from "./builder/builders";
 
 @NgModule({
   declarations: [
@@ -59,7 +61,7 @@ import {SubgroupService} from "./service/subgroup.service";
     Ng2Bs3ModalModule,
     GridModule
   ],
-  providers: [ProfessorListGuard, LoginService, SubgroupService],
+  providers: [ProfessorListGuard, LoginService, SubgroupService, ProfessorService, ESProfessorBuilder],
   bootstrap: [AppComponent]
 })
 export class AppModule {
