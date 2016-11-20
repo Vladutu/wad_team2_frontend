@@ -1,42 +1,36 @@
 import {Component, AfterViewInit, ElementRef, Input, OnChanges, SimpleChanges} from "@angular/core";
-
+declare var ace: any;
 @Component({
   selector: 'wad-ace-highlighter',
   templateUrl: './ace-highlighter.component.html',
   styleUrls: ['./ace-highlighter.component.css']
 })
 export class AceHighlighterComponent implements AfterViewInit, OnChanges {
-
   @Input() mode: string = 'javascript';
 
+  @Input() theme: string = 'twilight';
+
   private script: any = null;
+
+  private editor: any = null;
 
   constructor(private elementRef: ElementRef) {
   }
 
 
   ngAfterViewInit(): void {
-    this.script = document.createElement("script");
-    this.script.type = "text/javascript";
-    this.script.text = " var editor = ace.edit('editor'); " +
-      "editor.setTheme('ace/theme/twilight');" +
-      "editor.getSession().setMode('ace/mode/" + this.mode + "');" +
-      "editor.setReadOnly(true);" +
-      "document.getElementById('editor').style.fontSize='12px';";
-    this.elementRef.nativeElement.appendChild(this.script);
+    this.editor = ace.edit('editor');
+    this.editor.setTheme('ace/theme/' + this.theme);
+    this.editor.getSession().setMode('ace/mode/' + this.mode);
+    this.editor.setReadOnly(true);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    document.removeChild(this.script);
+    if (this.editor == null) {
+      return;
+    }
 
-    this.script = document.createElement("script");
-    this.script.type = "text/javascript";
-    this.script.text = " var editor = ace.edit('editor'); " +
-      "editor.setTheme('ace/theme/twilight');" +
-      "editor.getSession().setMode('ace/mode/" + changes['mode'].currentValue + "');" +
-      "editor.setReadOnly(true);" +
-      "document.getElementById('editor').style.fontSize='12px';";
-    this.elementRef.nativeElement.appendChild(this.script);
-    console.log("bla bla bla");
+    this.editor.getSession().setMode('ace/mode/' + this.mode);
+    this.editor.setTheme('ace/theme/' + this.theme);
   }
 }

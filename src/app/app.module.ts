@@ -31,6 +31,7 @@ import {SubgroupService} from "./service/subgroup.service";
 import {ProfessorService} from "./service/professor.service";
 import {ESProfessorBuilder} from "./builder/builders";
 import { AceHighlighterComponent } from './ace-highlighter/ace-highlighter.component';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { AceHighlighterComponent } from './ace-highlighter/ace-highlighter.compo
     ProfessorTaskListComponent,
     TaskDetailsComponent,
     AceHighlighterComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,
