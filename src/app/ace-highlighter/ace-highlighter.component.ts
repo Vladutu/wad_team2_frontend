@@ -10,9 +10,10 @@ export class AceHighlighterComponent implements AfterViewInit, OnChanges {
 
   @Input() theme: string = 'twilight';
 
-  private script: any = null;
+  @Input() content: string = '';
 
   private editor: any = null;
+
 
   constructor(private elementRef: ElementRef) {
   }
@@ -23,6 +24,7 @@ export class AceHighlighterComponent implements AfterViewInit, OnChanges {
     this.editor.setTheme('ace/theme/' + this.theme);
     this.editor.getSession().setMode('ace/mode/' + this.mode);
     this.editor.setReadOnly(true);
+    this.editor.setValue(this.content);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -30,7 +32,16 @@ export class AceHighlighterComponent implements AfterViewInit, OnChanges {
       return;
     }
 
-    this.editor.getSession().setMode('ace/mode/' + this.mode);
-    this.editor.setTheme('ace/theme/' + this.theme);
+    if (changes['mode'] != null) {
+      this.editor.getSession().setMode('ace/mode/' + this.mode);
+    }
+
+    if (changes['theme'] != null) {
+      this.editor.setTheme('ace/theme/' + this.theme);
+    }
+
+    if (changes['content'] != null) {
+      this.editor.setValue(this.content);
+    }
   }
 }

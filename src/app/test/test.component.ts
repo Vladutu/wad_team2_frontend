@@ -9,7 +9,9 @@ export class TestComponent implements OnInit {
 
   private mode: string = 'javascript';
 
-  private theme:string = 'twilight';
+  private theme: string = 'twilight';
+
+  private content: string = '';
 
   constructor() {
   }
@@ -21,8 +23,12 @@ export class TestComponent implements OnInit {
     this.mode = value;
   }
 
-  changeTheme(value:string){
+  changeTheme(value: string) {
     this.theme = value;
+  }
+
+  changeContent(value: string) {
+    this.content = value;
   }
 
 }
