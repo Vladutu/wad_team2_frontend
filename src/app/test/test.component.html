@@ -1,0 +1,10 @@
+<wad-ace-highlighter [mode]="mode" [theme]="theme" [content]="content"></wad-ace-highlighter>
+<input type="text" #txt/>
+<button (click)="changeMode(txt.value)">Submit mode</button>
+<br/>
+<input type="text" #txt2/>
+<button (click)="changeTheme(txt2.value)">Submit theme</button>
+<br/>
+<textarea rows="10" cols="70" #txt3></textarea>
+<button (click)="changeContent(txt3.value)">Submit content</button>
+
