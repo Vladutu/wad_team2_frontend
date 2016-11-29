@@ -29,9 +29,10 @@ import {TaskDetailsComponent} from "./student/task-details/task-details.componen
 import {LoginService} from "./service/login.service";
 import {SubgroupService} from "./service/subgroup.service";
 import {ProfessorService} from "./service/professor.service";
-import {ESProfessorBuilder} from "./builder/builders";
-import { AceHighlighterComponent } from './ace-highlighter/ace-highlighter.component';
-import { TestComponent } from './test/test.component';
+import {ESProfessorBuilder, ESStudentBuilder} from "./builder/builders";
+import {AceHighlighterComponent} from "./ace-highlighter/ace-highlighter.component";
+import {TestComponent} from "./test/test.component";
+import {StudentService} from "./service/student.service";
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { TestComponent } from './test/test.component';
     Ng2Bs3ModalModule,
     GridModule
   ],
-  providers: [ProfessorListGuard, LoginService, SubgroupService, ProfessorService, ESProfessorBuilder],
+  providers: [ProfessorListGuard, LoginService, SubgroupService, ProfessorService, ESProfessorBuilder, StudentService,
+    ESStudentBuilder],
   bootstrap: [AppComponent]
 })
 export class AppModule {

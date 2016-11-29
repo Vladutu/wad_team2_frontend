@@ -33,6 +33,7 @@
     <kendo-grid-column field="lastName" title="Last Name"></kendo-grid-column>
     <kendo-grid-column field="gender" title="Gender"></kendo-grid-column>
     <kendo-grid-column field="subgroup" title="Subgroup"></kendo-grid-column>
+    <kendo-grid-column field="username" title="Username"></kendo-grid-column>
     <kendo-grid-column [style]="{'text-align': 'center'}" [headerStyle]="{'text-align': 'center'}">
       <template kendoHeaderTemplate>
         <span class="glyphicon glyphicon-cog center-text"></span>
@@ -47,50 +48,52 @@
   </kendo-grid>
 </div>
 
-<modal #formModal>
-  <form>
+<modal #formModal [keyboard]="!requesting" [backdrop]="!requesting" (onDismiss)="dismissModal()">
+  <form [formGroup]="studentForm" (ngSubmit)="onFormSubmit()">
     <modal-header [show-close]="true">
-      <h4 class="modal-title">Add New Student</h4>
+      <h4 class="modal-title" *ngIf="!edit">Add new Student</h4>
+      <h4 class="modal-title" *ngIf="edit">Edit Student</h4>
     </modal-header>
     <modal-body>
       <wad-loading [show]="requesting"></wad-loading>
       <div class="form-group">
         <label for="ssn">SSN</label>
-        <input #ssn type="text" class="form-control" name="ssn" id="ssn">
+        <input type="text" class="form-control" name="ssn" id="ssn" formControlName="ssn">
       </div>
       <div class="form-group">
         <label for="firstName">First Name</label>
-        <input #firstName type="text" class="form-control" name="firstName" id="firstName">
+        <input type="text" class="form-control" name="firstName" id="firstName" formControlName="firstName">
       </div>
       <div class="form-group">
         <label for="lastName">Last Name</label>
-        <input #lastName type="text" class="form-control" name="lastName" id="lastName">
+        <input type="text" class="form-control" name="lastName" id="lastName" formControlName="lastName">
       </div>
       <div class="form-group">
         <label>Gender</label>
         <div class="radio-inline">
-          <label><input type="radio" name="gender">Male</label>
+          <label><input type="radio" name="gender" formControlName="gender" value="MALE">Male</label>
         </div>
         <div class="radio-inline">
-          <label><input type="radio" name="gender">Female</label>
+          <label><input type="radio" name="gender" formControlName="gender" value="FEMALE">Female</label>
         </div>
       </div>
       <div class="form-group">
-        <label>Subgroup</label>
-        <select class="form-control">
-          <option>CEN4.S1</option>
-          <option>CEN4.S2</option>
-          <option>CEN3.A</option>
-          <option>CEN3.B</option>
+        <label for="email">Email</label>
+        <input type="text" class="form-control" name="email" id="email" formControlName="email">
+      </div>
+      <div class="form-group">
+        <label>Subgroups</label>
+        <select class="form-control" formControlName="subgroup">
+          <option *ngIf="!studentForm.controls.subgroup.valid">-- Select Subgroup --</option>
+          <option *ngFor="let subgroup of subgroups">{{subgroup.name}}</option>
         </select>
       </div>
     </modal-body>
     <modal-footer>
-      <button type="button" class="btn btn-default" (click)="modal.close()">Cancel
-      </button>
-      <button type="button" class="btn btn-primary" (click)="onSave()">
-        Save
-      </button>
+      <button type="button" class="btn btn-default" (click)="closeModal()">Cancel</button>
+      <button type="submit" class="btn btn-primary" *ngIf="!edit" [disabled]="!studentForm.valid">Save</button>
+      <button type="submit" class="btn btn-primary" *ngIf="edit" [disabled]="!studentForm.valid">Edit</button>
     </modal-footer>
   </form>
 </modal>
+
