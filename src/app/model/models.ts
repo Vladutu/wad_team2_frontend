@@ -35,3 +35,17 @@ export class ESProfessor {
 
   }
 }
+
+export class Student {
+  constructor(public id: number, public ssn: string, public firstName: string, public lastName: string, public email: string,
+              public gender: string, public username: string, public subgroup: string) {
+
+  }
+}
+
+export class ESStudent {
+  constructor(public ssn: string, public firstName: string, public lastName: string, public email: string,
+              public gender: string, public username: string, public subgroup: string) {
+
+  }
+}
