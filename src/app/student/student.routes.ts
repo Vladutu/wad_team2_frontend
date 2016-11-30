@@ -1,8 +1,9 @@
 import {Routes} from "@angular/router";
-import {StudentTaskListComponent} from "./student-task-list/student-task-list.component";
-import { TaskDetailsComponent } from './task-details/task-details.component';
+import {TaskDetailsComponent} from "./task-details/task-details.component";
+import {StudentTopicListComponent} from "./student-topic-list/student-topic-list.component";
 
 export const STUDENT_ROUTES: Routes = [
-  {path: 'tasks', component: StudentTaskListComponent},
+  {path: 'topics', component: StudentTopicListComponent},
   {path: 'taskdetails', component: TaskDetailsComponent}
+
 ]

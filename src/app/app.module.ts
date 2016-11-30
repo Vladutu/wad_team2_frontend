@@ -15,7 +15,7 @@ import {LoadingOverlayComponent} from "./loading-overlay/loading-overlay.compone
 import {GridModule} from "@progress/kendo-angular-grid";
 import {LayoutModule} from "@progress/kendo-angular-layout";
 import {StudentComponent} from "./student/student.component";
-import {StudentTaskListComponent} from "./student/student-task-list/student-task-list.component";
+import {StudentTopicListComponent} from "./student/student-topic-list/student-topic-list.component";
 import {ProfessorComponent} from "./professor/professor.component";
 import {ProfessorTaskListComponent} from "./professor/professor-task-list/professor-task-list.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -45,7 +45,7 @@ import {StudentService} from "./service/student.service";
     ProfessorListComponent,
     StudentListComponent,
     LoadingOverlayComponent,
-    StudentTaskListComponent,
+    StudentTopicListComponent,
     PanelComponent,
     PanelHeaderComponent,
     PanelBodyComponent,
