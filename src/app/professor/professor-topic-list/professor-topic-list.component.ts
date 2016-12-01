@@ -1,22 +1,32 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
 import {ModalComponent} from "ng2-bs3-modal/components/modal";
+import {Topic} from "../../model/models";
+import {TopicService} from "../../service/topic.service";
 
 @Component({
   selector: 'wad-professor-task-list',
-  templateUrl: './professor-task-list.component.html',
-  styleUrls: ['./professor-task-list.component.css']
+  templateUrl: './professor-topic-list.component.html',
+  styleUrls: ['./professor-topic-list.component.css']
 })
-export class ProfessorTaskListComponent implements OnInit {
+export class ProfessorTopicListComponent implements OnInit {
 
   @ViewChild('formModal')
   private formModal: ModalComponent;
+
   private requesting: boolean = false;
+
   private autoTests: boolean = false;
 
-  constructor() {
+  private topics: Topic[] = [];
+
+  constructor(private topicService: TopicService) {
   }
 
   ngOnInit() {
+    this.topicService.getAll()
+      .subscribe((topics: Topic[]) => {
+        this.topics = topics;
+      }, error => console.log(error));
   }
 
   toggleTests() {
@@ -26,7 +36,7 @@ export class ProfessorTaskListComponent implements OnInit {
   onSave() {
     this.requesting = true;
 
-    setTimeout(()=> {
+    setTimeout(() => {
       this.requesting = false;
       this.formModal.close();
     }, 2000);

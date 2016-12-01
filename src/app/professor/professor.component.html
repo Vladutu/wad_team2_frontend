@@ -1,14 +1,17 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default wad-navbar">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <a class="navbar-brand" [routerLink]="['/professor']">E-app</a>
+      <!--<a class="navbar-brand" [routerLink]="['/student']">E-app</a>-->
+      <span class="navbar-brand wad-navbar-brand">
+            <img src="../../assets/images/logo.png" class="wad-navbar-brand-img"/>
+      </span>
     </div>
-
+    
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a [routerLink]="['tasks']">Tasks</a></li>
+        <li><a [routerLink]="['topics']">Topics</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown" wad-dropdown>
@@ -25,7 +28,7 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<div class="container">
+<div class="container professor-container">
   <router-outlet></router-outlet>
 
 </div>

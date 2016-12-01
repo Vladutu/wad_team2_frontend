@@ -3,7 +3,9 @@
     <div class="panel-heading">
       <div class="row">
         <div class="col col-xs-6">
-          <h3 class="panel-title">Task Management</h3>
+          <h3 class="panel-title">Topic Management
+            <button type="button" class="label label-primary pull-right">Add new</button>
+          </h3>
         </div>
       </div>
     </div>
@@ -12,10 +14,10 @@
 
 <wad-panel-group>
   <!--Each wad-panel represents a Topic-->
-  <wad-panel>
+  <wad-panel *ngFor="let topic of topics">
     <!--Header is the title of the Topic-->
     <wad-panel-header>
-      Formal Languages and Automata
+      {{topic.name}}
       <div class="btn-group btn-group-xs pull-right">
         <button type="button" class="label label-primary" (click)="formModal.open('md')">Add new</button>
       </div>
@@ -25,59 +27,18 @@
     <wad-panel-body>
       <!--One panel represents a Task-->
       <div class="panel panel-default">
-        <div class="panel-body panel-task">Homework 1 - Dijkstra's algorithm
+        <div class="panel-body panel-task cursor-hand" *ngFor="let task of topic.tasks">
+          <a>{{task.name}}</a>
           <div class="btn-group btn-group-xs pull-right">
-            <span class="label label-default">Automated-Test</span>
-            <span class="label label-danger">Deadline:  12/11/2016</span>
-            <span class="label label-warning">Uploads 15/30</span>
+            <span class="label label-default">{{task.testsEnabled?'Automated Test':'Manual Test'}}</span>
+            <span class="label label-danger">Deadline:{{task.deadline}}</span>
+            <span class="label label-warning">Uploads {{task.sentSolutions}}/{{task.noStudents}}</span>
           </div>
         </div>
+      
       </div>
     </wad-panel-body>
   </wad-panel>
-  
-  <wad-panel>
-    <wad-panel-header>
-      Real Time Computing Systems
-      <div class="btn-group btn-group-xs pull-right">
-        <button type="button" class="label label-primary" (click)="formModal.open('md')">Add new</button>
-      </div>
-    </wad-panel-header>
-    <wad-panel-body>
-      <!--One panel represents a Task-->
-      <div class="panel panel-default">
-        <div class="panel-body panel-task">Homework 1 - Random Generator
-          <div class="btn-group btn-group-xs pull-right">
-            <span class="label label-default">Automated-Test</span>
-            <span class="label label-danger">Deadline:  12/11/2016</span>
-            <span class="label label-warning">Uploads 15/30</span>
-          </div>
-        </div>
-      </div>
-    </wad-panel-body>
-  </wad-panel>
-  
-  <wad-panel>
-    <wad-panel-header>
-      Computer Networks Management
-      <div class="btn-group btn-group-xs pull-right">
-        <button type="button" class="label label-primary" (click)="formModal.open('md')">Add new</button>
-      </div>
-    </wad-panel-header>
-    <wad-panel-body>
-      <!--One panel represents a Task-->
-      <div class="panel panel-default">
-        <div class="panel-body panel-task">Homework 1 - Setting up a network using Cisco PKT
-          <div class="btn-group btn-group-xs pull-right">
-            <span class="label label-default">Automated-Test</span>
-            <span class="label label-danger">Deadline:  12/11/2016</span>
-            <span class="label label-warning">Uploads 15/30</span>
-          </div>
-        </div>
-      </div>
-    </wad-panel-body>
-  </wad-panel>
-
 </wad-panel-group>
 
 <footer class="footer-small">

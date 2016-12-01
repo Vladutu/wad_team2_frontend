@@ -49,3 +49,17 @@ export class ESStudent {
 
   }
 }
+
+export class Task {
+  constructor(public id: number, public name: string, public description: string, public deadline: string, public language: string,
+              public canSubmitSolutions: boolean, public testsEnabled: boolean, public plagiarismAnalyserEnabled: boolean,
+              public sentSolutions: number, public noStudents: number) {
+
+  }
+}
+
+export class Topic {
+  constructor(public id: number, public name: string, public tasks: Task[]) {
+
+  }
+}

@@ -17,7 +17,7 @@ import {LayoutModule} from "@progress/kendo-angular-layout";
 import {StudentComponent} from "./student/student.component";
 import {StudentTopicListComponent} from "./student/student-topic-list/student-topic-list.component";
 import {ProfessorComponent} from "./professor/professor.component";
-import {ProfessorTaskListComponent} from "./professor/professor-task-list/professor-task-list.component";
+import {ProfessorTopicListComponent} from "./professor/professor-topic-list/professor-topic-list.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {
   PanelComponent,
@@ -33,6 +33,7 @@ import {ESProfessorBuilder, ESStudentBuilder} from "./builder/builders";
 import {AceHighlighterComponent} from "./ace-highlighter/ace-highlighter.component";
 import {TestComponent} from "./test/test.component";
 import {StudentService} from "./service/student.service";
+import {TopicService} from "./service/topic.service";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,7 @@ import {StudentService} from "./service/student.service";
     PanelBodyComponent,
     PanelGroupComponent,
     ProfessorComponent,
-    ProfessorTaskListComponent,
+    ProfessorTopicListComponent,
     TaskDetailsComponent,
     AceHighlighterComponent,
     TestComponent,
@@ -67,7 +68,7 @@ import {StudentService} from "./service/student.service";
     GridModule
   ],
   providers: [ProfessorListGuard, LoginService, SubgroupService, ProfessorService, ESProfessorBuilder, StudentService,
-    ESStudentBuilder],
+    ESStudentBuilder, TopicService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
