@@ -35,6 +35,8 @@
           <a>{{task.name}}</a>
           <div class="btn-group btn-group-xs pull-right">
             <span class="label label-default">{{task.testsEnabled?'Automated Test':'Manual Test'}}</span>
+            <span
+              class="label label-primary">{{task.plagiarismAnalyserEnabled?'Anti-Plagiarism':'No Anti-Plagiarism'}}</span>
             <span class="label label-danger">Deadline:{{task.deadline}}</span>
             <span class="label label-warning">Uploads {{task.sentSolutions}}/{{task.noStudents}}</span>
           </div>
@@ -120,7 +122,7 @@
         <div *ngIf="testsEnabled">
           <input #inputFile type="file" class="form-control" (change)="onFileChange(inputFile, 'inputFile')">
           <input type="hidden" formControlName="inputFile">
-          <input #outputFile type="file" class="form-control"  (change)="onFileChange(outputFile, 'outputFile')">
+          <input #outputFile type="file" class="form-control" (change)="onFileChange(outputFile, 'outputFile')">
           <input type="hidden" formControlName="outputFile">
         </div>
       </div>
