@@ -3,7 +3,7 @@
 }
 
 .panel-body.panel-task.last-panel {
-  border-bottom:none;
+  border-bottom: none;
 }
 
 /* Footer Font Size */
@@ -15,4 +15,3 @@
 .cursor-hand {
   cursor: pointer;
 }
-

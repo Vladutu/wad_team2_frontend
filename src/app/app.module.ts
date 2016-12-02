@@ -29,11 +29,12 @@ import {TaskDetailsComponent} from "./student/task-details/task-details.componen
 import {LoginService} from "./service/login.service";
 import {SubgroupService} from "./service/subgroup.service";
 import {ProfessorService} from "./service/professor.service";
-import {ESProfessorBuilder, ESStudentBuilder} from "./builder/builders";
+import {ESProfessorBuilder, ESStudentBuilder, TaskBuilder} from "./builder/builders";
 import {AceHighlighterComponent} from "./ace-highlighter/ace-highlighter.component";
 import {TestComponent} from "./test/test.component";
 import {StudentService} from "./service/student.service";
 import {TopicService} from "./service/topic.service";
+import {TaskService} from "./service/task.service";
 
 @NgModule({
   declarations: [
@@ -68,7 +69,7 @@ import {TopicService} from "./service/topic.service";
     GridModule
   ],
   providers: [ProfessorListGuard, LoginService, SubgroupService, ProfessorService, ESProfessorBuilder, StudentService,
-    ESStudentBuilder, TopicService],
+    ESStudentBuilder, TopicService, TaskService, TaskBuilder],
   bootstrap: [AppComponent]
 })
 export class AppModule {

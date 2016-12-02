@@ -1,2 +1,9 @@
 @import "~@telerik/kendo-theme-default/styles/packages/all";
- 
+
+input.ng-dirty.ng-invalid {
+  border: 1px solid red;
+}
+
+textarea.ng-dirty.ng-invalid {
+  border: 1px solid red;
+}
