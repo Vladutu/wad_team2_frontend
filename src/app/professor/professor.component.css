@@ -1,0 +1,20 @@
+body {
+  background-color: #e9ebee;
+}
+
+.wad-navbar {
+  border-radius: 0;
+}
+
+.wad-navbar-brand {
+  padding: 13px 15px;
+  margin-right: 50px;
+}
+
+.wad-navbar-brand-img {
+  height: 100%;
+}
+
+.professor-container {
+  background-color: #e9ebee;
+}

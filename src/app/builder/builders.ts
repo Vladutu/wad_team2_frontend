@@ -1,5 +1,5 @@
 import {FormGroup} from "@angular/forms";
-import {ESProfessor, Professor, ESStudent, Student} from "../model/models";
+import {ESProfessor, Professor, ESStudent, Student, STask} from "../model/models";
 import {Injectable} from "@angular/core";
 
 @Injectable()
@@ -40,5 +40,16 @@ export class ESStudentBuilder {
       'email': student.email,
       'subgroup': student.subgroup
     };
+  }
+}
+
+@Injectable()
+export class TaskBuilder {
+
+  public buildFromForm(taskForm: FormGroup) {
+    let value = taskForm.value;
+
+    return new STask(value.name, value.description, value.deadline, value.language, value.plagiarismEnabled,
+      value.testsEnabled, value.subgroups, value.inputFile, value.outputFile);
   }
 }

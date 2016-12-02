@@ -15,9 +15,9 @@ import {LoadingOverlayComponent} from "./loading-overlay/loading-overlay.compone
 import {GridModule} from "@progress/kendo-angular-grid";
 import {LayoutModule} from "@progress/kendo-angular-layout";
 import {StudentComponent} from "./student/student.component";
-import {StudentTaskListComponent} from "./student/student-task-list/student-task-list.component";
+import {StudentTopicListComponent} from "./student/student-topic-list/student-topic-list.component";
 import {ProfessorComponent} from "./professor/professor.component";
-import {ProfessorTaskListComponent} from "./professor/professor-task-list/professor-task-list.component";
+import {ProfessorTopicListComponent} from "./professor/professor-topic-list/professor-topic-list.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {
   PanelComponent,
@@ -29,10 +29,12 @@ import {TaskDetailsComponent} from "./student/task-details/task-details.componen
 import {LoginService} from "./service/login.service";
 import {SubgroupService} from "./service/subgroup.service";
 import {ProfessorService} from "./service/professor.service";
-import {ESProfessorBuilder, ESStudentBuilder} from "./builder/builders";
+import {ESProfessorBuilder, ESStudentBuilder, TaskBuilder} from "./builder/builders";
 import {AceHighlighterComponent} from "./ace-highlighter/ace-highlighter.component";
 import {TestComponent} from "./test/test.component";
 import {StudentService} from "./service/student.service";
+import {TopicService} from "./service/topic.service";
+import {TaskService} from "./service/task.service";
 
 @NgModule({
   declarations: [
@@ -45,13 +47,13 @@ import {StudentService} from "./service/student.service";
     ProfessorListComponent,
     StudentListComponent,
     LoadingOverlayComponent,
-    StudentTaskListComponent,
+    StudentTopicListComponent,
     PanelComponent,
     PanelHeaderComponent,
     PanelBodyComponent,
     PanelGroupComponent,
     ProfessorComponent,
-    ProfessorTaskListComponent,
+    ProfessorTopicListComponent,
     TaskDetailsComponent,
     AceHighlighterComponent,
     TestComponent,
@@ -67,7 +69,7 @@ import {StudentService} from "./service/student.service";
     GridModule
   ],
   providers: [ProfessorListGuard, LoginService, SubgroupService, ProfessorService, ESProfessorBuilder, StudentService,
-    ESStudentBuilder],
+    ESStudentBuilder, TopicService, TaskService, TaskBuilder],
   bootstrap: [AppComponent]
 })
 export class AppModule {

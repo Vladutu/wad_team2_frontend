@@ -15,7 +15,13 @@ export class LoginService {
     let url: string = BASE_URL + "/login";
 
     return this.http.post(url, userLogin)
-      .map((response: Response)=>(<User>response.json()))
+      .map((response: Response) => (<User>response.json()))
       .catch(error => Observable.throw(error.json()));
+  }
+
+  public getAuthenticatedUser(): User {
+    let auth: string = localStorage.getItem('auth');
+
+    return <User>JSON.parse(auth);
   }
 }
