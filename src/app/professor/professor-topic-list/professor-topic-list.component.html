@@ -29,20 +29,28 @@
     
     <!--Body contains all the tasks of the respective topic-->
     <wad-panel-body>
-      <!--One panel represents a Task-->
-      <div class="panel panel-default">
-        <div class="panel-body panel-task cursor-hand" *ngFor="let task of topic.tasks">
-          <a>{{task.name}}</a>
-          <div class="btn-group btn-group-xs pull-right">
-            <span class="label label-default">{{task.testsEnabled?'Automated Test':'Manual Test'}}</span>
-            <span
-              class="label label-primary">{{task.plagiarismAnalyserEnabled?'Anti-Plagiarism':'No Anti-Plagiarism'}}</span>
-            <span class="label label-danger">Deadline:{{task.deadline}}</span>
-            <span class="label label-warning">Uploads {{task.sentSolutions}}/{{task.noStudents}}</span>
-          </div>
-        </div>
-      
-      </div>
+      <wad-panel-group *ngFor="let task of topic.tasks">
+        <wad-panel>
+          <wad-panel-header>
+            <!--One panel represents a Task-->
+            <div class="panel panel-default">
+              <div class="panel-body panel-task cursor-hand">
+                <a>{{task.name}}</a>
+                <div class="btn-group btn-group-xs pull-right">
+                  <span class="label label-default">{{task.testsEnabled?'Automated Test':'Manual Test'}}</span>
+                  <span
+                    class="label label-primary">{{task.plagiarismAnalyserEnabled?'Anti-Plagiarism':'No Anti-Plagiarism'}}</span>
+                  <span class="label label-danger">Deadline:{{task.deadline}}</span>
+                  <span class="label label-warning">Uploads {{task.sentSolutions}}/{{task.noStudents}}</span>
+                </div>
+              </div>
+            </div>
+          </wad-panel-header>
+          <wad-panel-body>
+            <wad-task-edit [task]="task" (reload)="loadTopics()"></wad-task-edit>
+          </wad-panel-body>
+        </wad-panel>
+      </wad-panel-group>
     </wad-panel-body>
   </wad-panel>
 </wad-panel-group>

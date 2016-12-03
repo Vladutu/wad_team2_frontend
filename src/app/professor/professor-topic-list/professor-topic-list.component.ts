@@ -35,6 +35,7 @@ export class ProfessorTopicListComponent implements OnInit {
 
   private selectedTopic: Topic = null;
 
+
   constructor(private topicService: TopicService, private subgroupService: SubgroupService,
               private taskBuilder: TaskBuilder, private taskService: TaskService) {
   }
@@ -194,4 +195,5 @@ export class ProfessorTopicListComponent implements OnInit {
 
     return null;
   }
+
 }

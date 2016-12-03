@@ -41,7 +41,7 @@ export class PanelComponent implements OnInit {
   }
 
   toggleState(event: MouseEvent): void {
-    if (event.toElement.tagName == "BUTTON") {
+    if (event.toElement.tagName == "BUTTON" || event.toElement.tagName == "A") {
       return;
     }
 
