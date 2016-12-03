@@ -1,5 +1,5 @@
 import {FormGroup} from "@angular/forms";
-import {ESProfessor, Professor, ESStudent, Student, STask} from "../model/models";
+import {ESProfessor, Professor, ESStudent, Student, STask, ETask} from "../model/models";
 import {Injectable} from "@angular/core";
 
 @Injectable()
@@ -51,5 +51,12 @@ export class TaskBuilder {
 
     return new STask(value.name, value.description, value.deadline, value.language, value.plagiarismEnabled,
       value.testsEnabled, value.subgroups, value.inputFile, value.outputFile);
+  }
+
+  buildETaskFromForm(taskEditForm: FormGroup) {
+    let value = taskEditForm.value;
+
+    return new ETask(value.name, value.description, value.deadline, value.filesUpdated, value.plagiarismEnabled,
+      value.inputFile, value.outputFile);
   }
 }

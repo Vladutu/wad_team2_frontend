@@ -35,6 +35,7 @@ import {TestComponent} from "./test/test.component";
 import {StudentService} from "./service/student.service";
 import {TopicService} from "./service/topic.service";
 import {TaskService} from "./service/task.service";
+import { TaskEditComponent } from './professor/task-edit/task-edit.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import {TaskService} from "./service/task.service";
     TaskDetailsComponent,
     AceHighlighterComponent,
     TestComponent,
+    TaskEditComponent,
   ],
   imports: [
     BrowserModule,

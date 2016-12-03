@@ -1,0 +1,80 @@
+<form [formGroup]="taskEditForm" (ngSubmit)="onTaskEditFormSubmit()" class="form-horizontal">
+  <wad-loading [show]="requesting"></wad-loading>
+  <div class="form-group">
+    <label class="control-label col-sm-2">Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="name" formControlName="name">
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label class="control-label col-sm-2">Description</label>
+    <div class="col-sm-10">
+    <textarea type="text" class="form-control textarea-description" name="name"
+              formControlName="description"></textarea>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label class="control-label col-sm-2">Deadline</label>
+    <div class="col-sm-10">
+      <input class="form-control" type="date" name="deadline" formControlName="deadline">
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label class="control-label col-sm-2">Language</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="language" value="{{task.language}}" [disabled]="true">
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label class="control-label col-sm-2">Subgroups</label>
+    <div class="col-sm-10">
+      <input type="text" name="subgroups" class="form-control" [value]="getSubgroupsAsString(task.subgroups)"
+             [disabled]="true">
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label><input type="checkbox" (click)="toggleFilesUpdated()"
+                      formControlName="filesUpdated">Update Tests</label>
+      </div>
+      
+      <div *ngIf="filesUpdated">
+        <input #inputFile type="file" class="form-control" (change)="onFileChange(inputFile, 'inputFile')">
+        <input type="hidden" formControlName="inputFile">
+        <input #outputFile type="file" class="form-control" (change)="onFileChange(outputFile, 'outputFile')">
+        <input type="hidden" formControlName="outputFile">
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label><input type="checkbox" formControlName="plagiarismEnabled">EnableAnti-Plagiarism</label>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary" [disabled]="!canEdit()"
+              style="margin-bottom: 10px; margin-right: 20px">Save
+        changes
+      </button>
+      <button type="button" class="btn btn-danger" style="margin-bottom: 10px" (click)="onTaskDelete()">Delete task
+      </button>
+    </div>
+  </div>
+  
+  <div class="form-group" *ngIf="deadlinePassed()">
+    <div class="col-sm-offset-2 col-sm-10">
+      <label style="color: red">This task's deadline passed. You can no longer edit it.</label>
+    </div>
+  </div>
+</form>
