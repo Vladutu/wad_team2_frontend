@@ -3,6 +3,7 @@ import {Task, ETask} from "../../model/models";
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {TaskService} from "../../service/task.service";
 import {TaskBuilder} from "../../builder/builders";
+import {DateParserService} from "../../service/dateparser.service";
 
 @Component({
   selector: 'wad-task-edit',
@@ -23,7 +24,7 @@ export class TaskEditComponent implements OnInit {
 
   private currentDate: Date = new Date();
 
-  constructor(private taskService: TaskService, private taskBuilder: TaskBuilder) {
+  constructor(private taskService: TaskService, private taskBuilder: TaskBuilder, private dateParserService: DateParserService) {
   }
 
   ngOnInit() {
