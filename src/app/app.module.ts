@@ -35,7 +35,8 @@ import {TestComponent} from "./test/test.component";
 import {StudentService} from "./service/student.service";
 import {TopicService} from "./service/topic.service";
 import {TaskService} from "./service/task.service";
-import { TaskEditComponent } from './professor/task-edit/task-edit.component';
+import {TaskEditComponent} from "./professor/task-edit/task-edit.component";
+import {DateParserService} from "./service/dateparser.service";
 
 @NgModule({
   declarations: [
@@ -71,7 +72,7 @@ import { TaskEditComponent } from './professor/task-edit/task-edit.component';
     GridModule
   ],
   providers: [ProfessorListGuard, LoginService, SubgroupService, ProfessorService, ESProfessorBuilder, StudentService,
-    ESStudentBuilder, TopicService, TaskService, TaskBuilder],
+    ESStudentBuilder, TopicService, TaskService, TaskBuilder, DateParserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
