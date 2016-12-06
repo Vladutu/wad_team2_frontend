@@ -37,6 +37,7 @@ import {TopicService} from "./service/topic.service";
 import {TaskService} from "./service/task.service";
 import {TaskEditComponent} from "./professor/task-edit/task-edit.component";
 import {DateParserService} from "./service/dateparser.service";
+import {LanguagePipe} from "./pipes/language.pipe";
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import {DateParserService} from "./service/dateparser.service";
     AceHighlighterComponent,
     TestComponent,
     TaskEditComponent,
+    LanguagePipe
   ],
   imports: [
     BrowserModule,
