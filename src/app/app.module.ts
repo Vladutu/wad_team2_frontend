@@ -18,6 +18,7 @@ import {StudentComponent} from "./student/student.component";
 import {StudentTopicListComponent} from "./student/student-topic-list/student-topic-list.component";
 import {ProfessorComponent} from "./professor/professor.component";
 import {ProfessorTopicListComponent} from "./professor/professor-topic-list/professor-topic-list.component";
+import {TaskSolutionComponent} from "./professor/task-solution/task-solution.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {
   PanelComponent,
@@ -35,6 +36,7 @@ import {TestComponent} from "./test/test.component";
 import {StudentService} from "./service/student.service";
 import {TopicService} from "./service/topic.service";
 import {TaskService} from "./service/task.service";
+import { JstreeComponent } from './jstree/jstree.component';
 import {TaskEditComponent} from "./professor/task-edit/task-edit.component";
 import {DateParserService} from "./service/dateparser.service";
 import {LanguagePipe} from "./pipes/language.pipe";
@@ -58,8 +60,10 @@ import {LanguagePipe} from "./pipes/language.pipe";
     ProfessorComponent,
     ProfessorTopicListComponent,
     TaskDetailsComponent,
+    TaskSolutionComponent,
     AceHighlighterComponent,
     TestComponent,
+    JstreeComponent,
     TaskEditComponent,
     LanguagePipe
   ],

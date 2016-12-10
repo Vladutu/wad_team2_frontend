@@ -26,7 +26,7 @@
         </button>
       </div>
     </wad-panel-header>
-    
+
     <!--Body contains all the tasks of the respective topic-->
     <wad-panel-body>
       <wad-panel-group *ngFor="let task of topic.tasks">
@@ -35,7 +35,7 @@
             <!--One panel represents a Task-->
             <div class="panel panel-default">
               <div class="panel-body panel-task cursor-hand">
-                <a>{{task.name}}</a>
+          <a [routerLink]="['tasksolution']">{{task.name}}</a>
                 <div class="btn-group btn-group-xs pull-right">
                   <span class="label label-default">{{task.testsEnabled?'Automated Test':'Manual Test'}}</span>
                   <span
@@ -92,18 +92,18 @@
         <label for="name">Name</label>
         <input type="text" class="form-control" name="name" id="name" formControlName="name">
       </div>
-      
+
       <div class="form-group">
         <label for="name">Description</label>
         <textarea type="text" class="form-control textarea-description" name="name"
                   id="description" formControlName="description"></textarea>
       </div>
-      
+
       <div class="form-group">
         <label for="name">Deadline</label>
         <input class="form-control" type="date" name="deadline" formControlName="deadline">
       </div>
-      
+
       <div class="form-group">
         <label for="name">Language</label>
         <select formControlName="language" class="form-control">
@@ -112,21 +112,21 @@
           <option value="C">C</option>
         </select>
       </div>
-      
+
       <div class="form-group">
         <label>Subgroups</label>
         <select class="form-control" multiple (change)="onSubgroupListChange($event)">
           <option *ngFor="let subgroup of subgroups">{{subgroup.name}}</option>
         </select>
-      
+
       </div>
-      
+
       <div class="form-group">
         <div class="checkbox">
           <label><input type="checkbox" (click)="toggleTests()" formControlName="testsEnabled">Enable
             Tests</label>
         </div>
-        
+
         <div *ngIf="testsEnabled">
           <input #inputFile type="file" class="form-control" (change)="onFileChange(inputFile, 'inputFile')">
           <input type="hidden" formControlName="inputFile">
@@ -134,14 +134,14 @@
           <input type="hidden" formControlName="outputFile">
         </div>
       </div>
-      
+
       <div class="form-group">
         <div class="checkbox">
           <label><input type="checkbox" formControlName="plagiarismEnabled">Enable
             Anti-Plagiarism</label>
         </div>
       </div>
-    
+
     </modal-body>
     <modal-footer>
       <button type="button" class="btn btn-default" (click)="closeTaskModal()">Cancel</button>

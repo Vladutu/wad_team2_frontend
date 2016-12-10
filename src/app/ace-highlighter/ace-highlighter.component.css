@@ -1,4 +1,6 @@
-#editor {
-  width: 1000px;
-  height: 500px;
+#editor, #task-solution-viewer  {
+  height: 100%;
+}
+.ace_editor {
+  height: 100% !important;
 }
