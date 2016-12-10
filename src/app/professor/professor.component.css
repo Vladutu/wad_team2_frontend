@@ -17,4 +17,6 @@ body {
 
 .professor-container {
   background-color: #e9ebee;
+  border: 1px solid #AAA;
+  padding: 20px;
 }

@@ -1,0 +1,16 @@
+body {
+  background-color: #e9ebee;
+}
+body, html {
+  height: 100%;
+}
+
+#task-solution-container {
+  height: 500px;
+}
+
+.full-height {
+  height: 100%;
+}
+
+

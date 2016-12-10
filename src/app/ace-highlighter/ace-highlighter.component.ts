@@ -8,7 +8,7 @@ declare var ace: any;
 export class AceHighlighterComponent implements AfterViewInit, OnChanges {
   @Input() mode: string = 'javascript';
 
-  @Input() theme: string = 'twilight';
+  @Input() theme: string = 'github';
 
   @Input() content: string = '';
 

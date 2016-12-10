@@ -1,0 +1,6 @@
+<div id="task-solution-container" class="container">
+  <div class="row full-height">
+    <wad-jstree [treeStructure]="generateSolutionTree()" (onFileSelect)="loadFileCode($event)"></wad-jstree>
+    <wad-ace-highlighter [content]="content" [mode]="mode"></wad-ace-highlighter>
+  </div>
+</div>
