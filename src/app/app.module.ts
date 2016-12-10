@@ -37,6 +37,9 @@ import {StudentService} from "./service/student.service";
 import {TopicService} from "./service/topic.service";
 import {TaskService} from "./service/task.service";
 import { JstreeComponent } from './jstree/jstree.component';
+import {TaskEditComponent} from "./professor/task-edit/task-edit.component";
+import {DateParserService} from "./service/dateparser.service";
+import {LanguagePipe} from "./pipes/language.pipe";
 
 @NgModule({
   declarations: [
@@ -61,6 +64,8 @@ import { JstreeComponent } from './jstree/jstree.component';
     AceHighlighterComponent,
     TestComponent,
     JstreeComponent,
+    TaskEditComponent,
+    LanguagePipe
   ],
   imports: [
     BrowserModule,
@@ -73,7 +78,7 @@ import { JstreeComponent } from './jstree/jstree.component';
     GridModule
   ],
   providers: [ProfessorListGuard, LoginService, SubgroupService, ProfessorService, ESProfessorBuilder, StudentService,
-    ESStudentBuilder, TopicService, TaskService, TaskBuilder],
+    ESStudentBuilder, TopicService, TaskService, TaskBuilder, DateParserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

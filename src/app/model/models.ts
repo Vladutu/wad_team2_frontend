@@ -58,10 +58,17 @@ export class Task {
   }
 }
 
-export class STask{
-  constructor(public name:string, public description:string, public deadline:string, public language:string,
-  public plagiarismEnabled:boolean, public testsEnabled:boolean, public subgroups:string[], public inputFile:string,
-  public outputFile:string){
+export class STask {
+  constructor(public name: string, public description: string, public deadline: string, public language: string,
+              public plagiarismEnabled: boolean, public testsEnabled: boolean, public subgroups: string[], public inputFile: string,
+              public outputFile: string) {
+
+  }
+}
+
+export class ETask {
+  constructor(public name: string, public description: string, public deadline: string, public filesUpdated: boolean,
+              public plagiarismEnabled: boolean, public inputFile: string, public outputFile: string) {
 
   }
 }

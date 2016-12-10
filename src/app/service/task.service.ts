@@ -3,7 +3,7 @@ import {Http, Response} from "@angular/http";
 import "rxjs/Rx";
 import {Observable} from "rxjs";
 import {BASE_URL} from "./server";
-import {User, STask, Task} from "../model/models";
+import {User, STask, Task, ETask} from "../model/models";
 import {LoginService} from "./login.service";
 
 @Injectable()
@@ -22,4 +22,19 @@ export class TaskService {
   }
 
 
+  delete(id: number) {
+    let url: string = BASE_URL + "/professors/tasks/" + id;
+
+    return this.http.delete(url)
+      .map((response: Response) => (<Task>response.json()))
+      .catch(error => Observable.throw(error.json()));
+  }
+
+  edit(id: number, toBeEdited: ETask) {
+    let url: string = BASE_URL + "/professors/tasks/" + id;
+
+    return this.http.put(url, toBeEdited)
+      .map((response: Response) => (<Task>response.json()))
+      .catch(error => Observable.throw(error.json()));
+  }
 }
