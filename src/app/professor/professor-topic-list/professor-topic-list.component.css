@@ -15,3 +15,7 @@
 .cursor-hand {
   cursor: pointer;
 }
+
+#topic-list-container {
+  background-color: #e9ebee;
+}

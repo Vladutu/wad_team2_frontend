@@ -1,6 +1,7 @@
 body {
   background-color: #e9ebee;
 }
+
 body, html {
   height: 100%;
 }
@@ -13,7 +14,7 @@ body, html {
 
 .full-height {
   height: 92%;
-  overflow:scroll;
+  overflow: scroll;
 }
 
 #task-solution-header {
@@ -22,7 +23,16 @@ body, html {
   color: #ffffff;
   font-family: monospace;
 }
+
 ::-webkit-scrollbar {
   display: none;
 }
 
+.wad-back-button {
+  line-height: 2;
+  font-size: 29px;
+}
+
+.wad-back-button:hover {
+  cursor: pointer;
+}
