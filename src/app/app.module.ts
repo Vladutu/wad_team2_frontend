@@ -19,6 +19,7 @@ import {StudentTopicListComponent} from "./student/student-topic-list/student-to
 import {ProfessorComponent} from "./professor/professor.component";
 import {ProfessorTopicListComponent} from "./professor/professor-topic-list/professor-topic-list.component";
 import {TaskSolutionComponent} from "./professor/task-solution/task-solution.component";
+import {TaskStudentsSolutionsComponent} from "./professor/professor-topic-list/task-students-solutions.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {
   PanelComponent,
@@ -40,6 +41,8 @@ import {JstreeComponent} from "./jstree/jstree.component";
 import {TaskEditComponent} from "./professor/task-edit/task-edit.component";
 import {DateParserService} from "./service/dateparser.service";
 import {LanguagePipe} from "./pipes/language.pipe";
+import {SolutionStudentService} from "./service/solutionstudent.service";
+import {SolutionOtherStudentService} from "./service/solutionotherstudentservice.service";
 
 @NgModule({
   declarations: [
@@ -65,7 +68,8 @@ import {LanguagePipe} from "./pipes/language.pipe";
     JstreeComponent,
     TaskEditComponent,
     LanguagePipe,
-    TaskSolutionComponent
+    TaskSolutionComponent,
+    TaskStudentsSolutionsComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +82,7 @@ import {LanguagePipe} from "./pipes/language.pipe";
     GridModule
   ],
   providers: [ProfessorListGuard, LoginService, SubgroupService, ProfessorService, ESProfessorBuilder, StudentService,
-    ESStudentBuilder, TopicService, TaskService, TaskBuilder, DateParserService],
+    ESStudentBuilder, TopicService, TaskService, TaskBuilder, DateParserService, SolutionStudentService, SolutionOtherStudentService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

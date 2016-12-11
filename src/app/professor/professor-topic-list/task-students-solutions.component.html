@@ -1,0 +1,51 @@
+<div class="container container-fluid" id="students-solutions-container">
+  <div class="row">
+    <div class="panel panel-primary panel-table">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col col-xs-6">
+            <h3 class="panel-title">Students' solutions</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <wad-panel-group>
+    <!--Each wad-panel represents a Topic-->
+    <wad-panel *ngFor="let student of students">
+      <!--Header is the title of the Topic-->
+      <wad-panel-header>
+        <!--One panel represents a Task-->
+        <div class="panel panel-default">
+          <div class="panel-body panel-task row wad-padding-row cursor-hand" id="student-details-container">
+            <div class="col-md-4">{{student.firstName + ' ' + student.lastName}}</div>
+            <div class="col-md-2">{{student.mark}}</div>
+            <div class="btn-group btn-group-xs pull-right">
+              <span class="label label-default">Edit grade</span>
+            </div>
+          </div>
+        </div>
+      </wad-panel-header>
+
+      <!--Body contains all the tasks of the respective topic-->
+      <wad-panel-body>
+        <wad-panel-group>
+          <wad-panel *ngFor="let student of otherStudents">
+            <wad-panel-header>
+              <!--One panel represents a Task-->
+              <div class="panel panel-default">
+                <div class="panel-body panel-task row wad-padding-row cursor-hand">
+                  <div class="col-md-4">Other students</div>
+                  <div class="col-md-2">Plagiarism</div>
+                  <div class="btn-group btn-group-xs pull-right">
+                    <span class="label label-default">Compare solutions</span>
+                  </div>
+                </div>
+              </div>
+            </wad-panel-header>
+          </wad-panel>
+        </wad-panel-group>
+      </wad-panel-body>
+    </wad-panel>
+  </wad-panel-group>
+</div>
