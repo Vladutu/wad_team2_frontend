@@ -6,7 +6,7 @@ declare var jstree:any;
 @Component({
   selector: 'wad-jstree',
   templateUrl: './jstree.component.html',
-  styleUrls: ['./jstree.component.scss']
+  styleUrls: ['./jstree.component.css']
 })
 export class JstreeComponent implements OnInit, AfterViewInit {
 
@@ -22,15 +22,15 @@ export class JstreeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit():void {
-    console.log(this.treeStructure);
+    var scope = this;
     var jsTree = $('#jstree');
     jsTree.jstree({
+      'plugins': ['types'],
       'core': {
         'data': [this.treeStructure]
       }
     });
-    var scope = this;
-    jsTree.on("changed.jstree", function (e, data) {
+    jsTree.on('changed.jstree', function (e, data) {
       let nodeDetails = data.node.original;
       if (nodeDetails.file) {
         scope.onFileSelect.emit({
