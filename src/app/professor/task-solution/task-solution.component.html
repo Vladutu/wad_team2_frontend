@@ -1,5 +1,10 @@
-<div id="task-solution-container" class="container">
-  <div class="row full-height">
+<div id="task-solution-container" class="container container-fluid">
+  <div class="row row-fluid">
+    <div class="col-md-12" id="task-solution-header">
+      Task Solution Viewer 1.0.0
+    </div>
+  </div>
+  <div class="row row-fluid full-height">
     <wad-jstree [treeStructure]="generateSolutionTree()" (onFileSelect)="loadFileCode($event)"></wad-jstree>
     <wad-ace-highlighter [content]="content" [mode]="mode"></wad-ace-highlighter>
   </div>

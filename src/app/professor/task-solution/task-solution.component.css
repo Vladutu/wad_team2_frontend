@@ -7,10 +7,22 @@ body, html {
 
 #task-solution-container {
   height: 500px;
+  background-color: #e9ebee;
+  border: 1px solid #AAA;
 }
 
 .full-height {
-  height: 100%;
+  height: 92%;
+  overflow:scroll;
 }
 
+#task-solution-header {
+  line-height: 2.6;
+  background-color: #999999;
+  color: #ffffff;
+  font-family: monospace;
+}
+::-webkit-scrollbar {
+  display: none;
+}
 

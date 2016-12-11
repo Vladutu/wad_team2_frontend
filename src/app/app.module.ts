@@ -36,7 +36,7 @@ import {TestComponent} from "./test/test.component";
 import {StudentService} from "./service/student.service";
 import {TopicService} from "./service/topic.service";
 import {TaskService} from "./service/task.service";
-import { JstreeComponent } from './jstree/jstree.component';
+import {JstreeComponent} from "./jstree/jstree.component";
 import {TaskEditComponent} from "./professor/task-edit/task-edit.component";
 import {DateParserService} from "./service/dateparser.service";
 import {LanguagePipe} from "./pipes/language.pipe";
@@ -60,12 +60,12 @@ import {LanguagePipe} from "./pipes/language.pipe";
     ProfessorComponent,
     ProfessorTopicListComponent,
     TaskDetailsComponent,
-    TaskSolutionComponent,
     AceHighlighterComponent,
     TestComponent,
     JstreeComponent,
     TaskEditComponent,
-    LanguagePipe
+    LanguagePipe,
+    TaskSolutionComponent
   ],
   imports: [
     BrowserModule,
