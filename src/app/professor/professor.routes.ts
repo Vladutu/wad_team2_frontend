@@ -7,5 +7,5 @@ import {TaskStudentsSolutionsComponent} from "./professor-topic-list/task-studen
 export const PROFESSOR_ROUTES: Routes = [
   {path: 'topics', component: ProfessorTopicListComponent},
   {path: 'topics/task-students-solutions', component: TaskStudentsSolutionsComponent},
-  {path:'tasksolution', component: TaskSolutionComponent}
+  {path: 'solutions/:solutionId/tasksolution', component: TaskSolutionComponent}
 ]

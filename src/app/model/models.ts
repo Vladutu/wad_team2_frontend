@@ -96,3 +96,21 @@ export class SolutionOtherStudents {
               public gender: string, public username: string, public subgroup: string, public similarityPercent: string) {
   }
 }
+
+export class FolderNode {
+  constructor(public text: string, public path: string, public file: boolean, public extension: string, public children: FolderNode[]) {
+
+  }
+}
+
+export class FilePath {
+  constructor(public filePath: string) {
+
+  }
+}
+
+export class Content {
+  constructor(public content: string) {
+
+  }
+}

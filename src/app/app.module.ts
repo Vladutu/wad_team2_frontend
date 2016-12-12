@@ -43,6 +43,7 @@ import {DateParserService} from "./service/dateparser.service";
 import {LanguagePipe} from "./pipes/language.pipe";
 import {SolutionStudentService} from "./service/solutionstudent.service";
 import {SolutionOtherStudentService} from "./service/solutionotherstudentservice.service";
+import {SolutionService} from "./service/solution.service";
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import {SolutionOtherStudentService} from "./service/solutionotherstudentservice
     GridModule
   ],
   providers: [ProfessorListGuard, LoginService, SubgroupService, ProfessorService, ESProfessorBuilder, StudentService,
-    ESStudentBuilder, TopicService, TaskService, TaskBuilder, DateParserService, SolutionStudentService, SolutionOtherStudentService],
+    ESStudentBuilder, TopicService, TaskService, TaskBuilder, DateParserService, SolutionStudentService, SolutionOtherStudentService,
+    SolutionService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

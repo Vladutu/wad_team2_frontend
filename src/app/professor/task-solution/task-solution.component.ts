@@ -1,6 +1,9 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
+import {ActivatedRoute} from "@angular/router";
+import {SolutionService} from "../../service/solution.service";
+import {FolderNode, FilePath, Content} from "../../model/models";
 
-declare var jQuery:any;
+declare var jQuery: any;
 @Component({
   selector: 'wad-professor-task-solution',
   templateUrl: './task-solution.component.html',
@@ -8,96 +11,48 @@ declare var jQuery:any;
 })
 export class TaskSolutionComponent implements OnInit {
 
-  private content:string = '';
-  private mode:string = 'java';
+  private content: string = '';
+
+  private mode: string = 'java';
+
+  private solutionId: number;
+
+  private folderNode: FolderNode;
+
+  private extensionMap: any = {
+    'java': 'java',
+    'cs': 'csharp',
+    'c': 'c_cpp',
+    'cpp': 'c_cpp',
+    'xml': 'xml',
+    'json': 'json'
+  };
+
+  constructor(private activatedRoute: ActivatedRoute, private solutionService: SolutionService) {
+    this.solutionId = this.activatedRoute.snapshot.params['solutionId'];
+  }
+
   ngOnInit() {
-
+    this.solutionService.getFolderStructure(this.solutionId)
+      .subscribe((folderNode: FolderNode) => {
+        this.folderNode = folderNode;
+      }, error => {
+        console.log(error);
+      })
   }
+
   generateSolutionTree() {
-    return {
-      "text": "Homework1",
-      "path": "/home/ids/wad/5/1/1/2",
-      "extension": "",
-      "file": false,
-      "children": [
-        {
-          "text": "Writer.java",
-          "path": "/home/ids/wad/5/1/1/2/Writer.java",
-          "extension": "java",
-          "file": true,
-          "children": []
-        },
-        {
-          "text": "Main.java",
-          "path": "/home/ids/wad/5/1/1/2/Main.java",
-          "extension": "java",
-          "file": true,
-          "children": []
-        },
-        {
-          "text": "com",
-          "path": "/home/ids/wad/5/1/1/2/com",
-          "extension": "",
-          "file": false,
-          "children": [
-            {
-              "text": "wad",
-              "path": "/home/ids/wad/5/1/1/2/com/wad",
-              "extension": "",
-              "file": false,
-              "children": [
-                {
-                  "text": "test",
-                  "path": "/home/ids/wad/5/1/1/2/com/wad/test",
-                  "extension": "",
-                  "file": false,
-                  "children": [
-                    {
-                      "text": "Reader.java",
-                      "path": "/home/ids/wad/5/1/1/2/com/wad/test/Reader.java",
-                      "extension": "java",
-                      "file": true,
-                      "children": []
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
+    return this.folderNode;
   }
+
   loadFileCode(event) {
-    this.content = `
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-
-/**
- * Created by ctotolin on 15-Nov-16.
- */
-public class Reader {
-    public Reader() {
-
-    }
-    public String readFile(String path) {
-        try(BufferedReader br = new BufferedReader(new FileReader(path))) {
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-
-            while (line != null) {
-                sb.append(line);
-                sb.append(System.lineSeparator());
-                line = br.readLine();
-            }
-            return sb.toString();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return "";
-    }
-}`;
+    this.mode = this.extensionMap[event.extension];
+    let filePath: FilePath = new FilePath(event.path);
+    this.solutionService.getFileContent(filePath)
+      .subscribe((content: Content) => {
+        this.content = content.content;
+      }, error => {
+        console.log(error);
+      });
   }
 }

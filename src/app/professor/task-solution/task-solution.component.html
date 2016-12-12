@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="row row-fluid full-height">
-    <wad-jstree [treeStructure]="generateSolutionTree()" (onFileSelect)="loadFileCode($event)"></wad-jstree>
+    <wad-jstree [treeStructure]="folderNode" (onFileSelect)="loadFileCode($event)"></wad-jstree>
     <wad-ace-highlighter [content]="content" [mode]="mode"></wad-ace-highlighter>
   </div>
   <div class="row row-fluid">
