@@ -23,6 +23,7 @@ export class JstreeComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit():void {
     var scope = this;
+    this.traverse(this.treeStructure);
     var jsTree = $('#jstree');
     jsTree.jstree({
       'plugins': ['types'],
@@ -40,6 +41,22 @@ export class JstreeComponent implements OnInit, AfterViewInit {
         });
       }
     });
+  }
+
+  traverse(object):void {
+    var scope = this;
+    var fileIcon = 'glyphicon glyphicon-file', folderIcon = 'glyphicon glyphicon-folder-open';
+    var iconProperty = '';
+    if (typeof object === "object") {
+      $.each(object, function (key, value) {
+        if (object.file) {
+          object.icon = fileIcon;
+        } else {
+          object.icon = folderIcon;
+        }
+        scope.traverse(value);
+      });
+    }
   }
 
 }

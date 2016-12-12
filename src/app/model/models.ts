@@ -85,3 +85,14 @@ export class STopic {
   }
 }
 
+export class SolutionStudent {
+  constructor(public id: number, public ssn: string, public firstName: string, public lastName: string, public email: string,
+              public gender: string, public username: string, public subgroup: string, public mark: string) {
+  }
+}
+
+export class SolutionOtherStudents {
+  constructor(public id: number, public ssn: string, public firstName: string, public lastName: string, public email: string,
+              public gender: string, public username: string, public subgroup: string, public similarityPercent: string) {
+  }
+}

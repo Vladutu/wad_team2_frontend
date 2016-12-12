@@ -1,151 +1,156 @@
-<div class="row">
-  <div class="panel panel-primary panel-table">
-    <div class="panel-heading">
-      <div class="row">
-        <div class="col col-xs-6">
-          <h3 class="panel-title">Topic Management
-            <button type="button" class="label label-primary pull-right" (click)="topicModal.open('md')">New Topic
-            </button>
-          </h3>
+<div class="container container-fluid" id="topic-list-container">
+  <div class="row">
+    <div class="panel panel-primary panel-table">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col col-xs-6">
+            <h3 class="panel-title">Topic Management
+              <button type="button" class="label label-primary pull-right" (click)="topicModal.open('md')">New Topic
+              </button>
+            </h3>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<wad-panel-group>
-  <!--Each wad-panel represents a Topic-->
-  <wad-panel *ngFor="let topic of topics">
-    <!--Header is the title of the Topic-->
-    <wad-panel-header>
-      {{topic.name}}
-      <div class="btn-group btn-group-xs pull-right">
-        <button class="label label-danger pull-right" (click)="onTopicDelete(topic)">Delete Topic</button>
-        <button class="label label-primary pull-right" (click)="openTaskModal(topic)" style="margin-right: 10px">New
-          Task
-        </button>
-      </div>
-    </wad-panel-header>
+  <wad-panel-group>
+    <!--Each wad-panel represents a Topic-->
+    <wad-panel *ngFor="let topic of topics">
+      <!--Header is the title of the Topic-->
+      <wad-panel-header>
+        {{topic.name}}
+        <div class="btn-group btn-group-xs pull-right">
+          <button class="label label-danger pull-right" (click)="onTopicDelete(topic)">Delete Topic</button>
+          <button class="label label-primary pull-right" (click)="openTaskModal(topic)" style="margin-right: 10px">New
+            Task
+          </button>
+        </div>
+      </wad-panel-header>
 
-    <!--Body contains all the tasks of the respective topic-->
-    <wad-panel-body>
-      <wad-panel-group *ngFor="let task of topic.tasks">
-        <wad-panel>
-          <wad-panel-header>
-            <!--One panel represents a Task-->
-            <div class="panel panel-default">
-              <div class="panel-body panel-task cursor-hand">
-          <a [routerLink]="['tasksolution']">{{task.name}}</a>
-                <div class="btn-group btn-group-xs pull-right">
-                  <span class="label label-default">{{task.testsEnabled?'Automated Test':'Manual Test'}}</span>
+      <!--Body contains all the tasks of the respective topic-->
+      <wad-panel-body>
+        <wad-panel-group *ngFor="let task of topic.tasks">
+          <wad-panel>
+            <wad-panel-header>
+              <!--One panel represents a Task-->
+              <div class="panel panel-default">
+                <div class="panel-body panel-task cursor-hand">
+                  <a [routerLink]="['task-students-solutions']">{{task.name}}</a>
+
+                  <div class="btn-group btn-group-xs pull-right">
+                    <span class="label label-default">{{task.testsEnabled?'Automated Test':'Manual Test'}}</span>
                   <span
                     class="label label-primary">{{task.plagiarismAnalyserEnabled?'Anti-Plagiarism':'No Anti-Plagiarism'}}</span>
-                  <span class="label label-danger">Deadline:{{task.deadline}}</span>
-                  <span class="label label-warning">Uploads {{task.sentSolutions}}/{{task.noStudents}}</span>
+                    <span class="label label-danger">Deadline:{{task.deadline}}</span>
+                    <span class="label label-warning">Uploads {{task.sentSolutions}}/{{task.noStudents}}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </wad-panel-header>
-          <wad-panel-body>
-            <wad-task-edit [task]="task" (reload)="loadTopics()"></wad-task-edit>
-          </wad-panel-body>
-        </wad-panel>
-      </wad-panel-group>
-    </wad-panel-body>
-  </wad-panel>
-</wad-panel-group>
+            </wad-panel-header>
+            <wad-panel-body>
+              <wad-task-edit [task]="task" (reload)="loadTopics()"></wad-task-edit>
+            </wad-panel-body>
+          </wad-panel>
+        </wad-panel-group>
+      </wad-panel-body>
+    </wad-panel>
+  </wad-panel-group>
 
-<footer class="footer-small">
-  <p>This is the management panel for all the tasks you assign to your students.</p>
-  <p>Add/Remove tasks and edit them using the panels above.</p>
-  <p>Contact information: <a href="mailto:help@eapp.com">
-    help@eapp.com</a>.</p>
-</footer>
+  <footer class="footer-small">
+    <p>This is the management panel for all the tasks you assign to your students.</p>
 
-<modal #topicModal [keyboard]="!requesting" [backdrop]="!requesting" (onDismiss)="dismissTopicModal()">
-  <form [formGroup]="topicForm" (ngSubmit)="onTopicFormSubmit()">
-    <modal-header [show-close]="true">
-      <h4 class="modal-title">Add new Topic</h4>
-    </modal-header>
-    <modal-body>
-      <wad-loading [show]="requesting"></wad-loading>
-      <div class="form-group">
-        <label>Name</label>
-        <input type="text" class="form-control" name="name" formControlName="name">
-      </div>
-    </modal-body>
-    <modal-footer>
-      <button type="button" class="btn btn-default" (click)="closeTopicModal()">Cancel</button>
-      <button type="submit" class="btn btn-primary" [disabled]="!topicForm.valid">Save</button>
-    </modal-footer>
-  </form>
-</modal>
+    <p>Add/Remove tasks and edit them using the panels above.</p>
 
-<modal #taskModal [keyboard]="!requesting" [backdrop]="!requesting" (onDismiss)="dismissTaskModal()">
-  <form [formGroup]="taskForm" (ngSubmit)="onTaskFormSubmit()">
-    <modal-header [show-close]="true">
-      <h4 class="modal-title">Add new Task</h4>
-    </modal-header>
-    <modal-body>
-      <wad-loading [show]="requesting"></wad-loading>
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" name="name" id="name" formControlName="name">
-      </div>
+    <p>Contact information: <a href="mailto:help@eapp.com">
+      help@eapp.com</a>.</p>
+  </footer>
 
-      <div class="form-group">
-        <label for="name">Description</label>
+  <modal #topicModal [keyboard]="!requesting" [backdrop]="!requesting" (onDismiss)="dismissTopicModal()">
+    <form [formGroup]="topicForm" (ngSubmit)="onTopicFormSubmit()">
+      <modal-header [show-close]="true">
+        <h4 class="modal-title">Add new Topic</h4>
+      </modal-header>
+      <modal-body>
+        <wad-loading [show]="requesting"></wad-loading>
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" name="name" formControlName="name">
+        </div>
+      </modal-body>
+      <modal-footer>
+        <button type="button" class="btn btn-default" (click)="closeTopicModal()">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!topicForm.valid">Save</button>
+      </modal-footer>
+    </form>
+  </modal>
+
+  <modal #taskModal [keyboard]="!requesting" [backdrop]="!requesting" (onDismiss)="dismissTaskModal()">
+    <form [formGroup]="taskForm" (ngSubmit)="onTaskFormSubmit()">
+      <modal-header [show-close]="true">
+        <h4 class="modal-title">Add new Task</h4>
+      </modal-header>
+      <modal-body>
+        <wad-loading [show]="requesting"></wad-loading>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" name="name" id="name" formControlName="name">
+        </div>
+
+        <div class="form-group">
+          <label for="name">Description</label>
         <textarea type="text" class="form-control textarea-description" name="name"
                   id="description" formControlName="description"></textarea>
-      </div>
-
-      <div class="form-group">
-        <label for="name">Deadline</label>
-        <input class="form-control" type="date" name="deadline" formControlName="deadline">
-      </div>
-
-      <div class="form-group">
-        <label for="name">Language</label>
-        <select formControlName="language" class="form-control">
-          <option value="JAVA">Java</option>
-          <option value="CSHARP">C#</option>
-          <option value="C">C</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label>Subgroups</label>
-        <select class="form-control" multiple (change)="onSubgroupListChange($event)">
-          <option *ngFor="let subgroup of subgroups">{{subgroup.name}}</option>
-        </select>
-
-      </div>
-
-      <div class="form-group">
-        <div class="checkbox">
-          <label><input type="checkbox" (click)="toggleTests()" formControlName="testsEnabled">Enable
-            Tests</label>
         </div>
 
-        <div *ngIf="testsEnabled">
-          <input #inputFile type="file" class="form-control" (change)="onFileChange(inputFile, 'inputFile')">
-          <input type="hidden" formControlName="inputFile">
-          <input #outputFile type="file" class="form-control" (change)="onFileChange(outputFile, 'outputFile')">
-          <input type="hidden" formControlName="outputFile">
+        <div class="form-group">
+          <label for="name">Deadline</label>
+          <input class="form-control" type="date" name="deadline" formControlName="deadline">
         </div>
-      </div>
 
-      <div class="form-group">
-        <div class="checkbox">
-          <label><input type="checkbox" formControlName="plagiarismEnabled">Enable
-            Anti-Plagiarism</label>
+        <div class="form-group">
+          <label for="name">Language</label>
+          <select formControlName="language" class="form-control">
+            <option value="JAVA">Java</option>
+            <option value="CSHARP">C#</option>
+            <option value="C">C</option>
+          </select>
         </div>
-      </div>
 
-    </modal-body>
-    <modal-footer>
-      <button type="button" class="btn btn-default" (click)="closeTaskModal()">Cancel</button>
-      <button type="submit" class="btn btn-primary" [disabled]="!taskForm.valid">Save</button>
-    </modal-footer>
-  </form>
-</modal>
+        <div class="form-group">
+          <label>Subgroups</label>
+          <select class="form-control" multiple (change)="onSubgroupListChange($event)">
+            <option *ngFor="let subgroup of subgroups">{{subgroup.name}}</option>
+          </select>
+
+        </div>
+
+        <div class="form-group">
+          <div class="checkbox">
+            <label><input type="checkbox" (click)="toggleTests()" formControlName="testsEnabled">Enable
+              Tests</label>
+          </div>
+
+          <div *ngIf="testsEnabled">
+            <input #inputFile type="file" class="form-control" (change)="onFileChange(inputFile, 'inputFile')">
+            <input type="hidden" formControlName="inputFile">
+            <input #outputFile type="file" class="form-control" (change)="onFileChange(outputFile, 'outputFile')">
+            <input type="hidden" formControlName="outputFile">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="checkbox">
+            <label><input type="checkbox" formControlName="plagiarismEnabled">Enable
+              Anti-Plagiarism</label>
+          </div>
+        </div>
+
+      </modal-body>
+      <modal-footer>
+        <button type="button" class="btn btn-default" (click)="closeTaskModal()">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!taskForm.valid">Save</button>
+      </modal-footer>
+    </form>
+  </modal>
+</div>
