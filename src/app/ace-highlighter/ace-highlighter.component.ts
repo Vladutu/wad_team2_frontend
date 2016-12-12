@@ -42,6 +42,7 @@ export class AceHighlighterComponent implements AfterViewInit, OnChanges {
 
     if (changes['content'] != null) {
       this.editor.setValue(this.content);
+      this.editor.clearSelection();
     }
   }
 }

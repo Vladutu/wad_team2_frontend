@@ -22,12 +22,13 @@
             <div class="col-md-2">{{student.mark}}</div>
             <div class="btn-group btn-group-xs pull-right">
               <span class="label label-warning" style="margin-right: 10px">Edit grade</span>
-              <span class="label label-primary">View solution</span>
+              <span class="label label-primary"><a [routerLink]="['../../', 'solutions','1','tasksolution']">View
+                solution</a></span>
             </div>
           </div>
         </div>
       </wad-panel-header>
-      
+
       <!--Body contains all the tasks of the respective topic-->
       <wad-panel-body>
         <wad-panel-group>
