@@ -3,11 +3,13 @@ import {Http, Response} from "@angular/http";
 import "rxjs/Rx";
 import {Observable} from "rxjs";
 import {BASE_URL} from "./server";
-import {User, STask, Task, ETask} from "../model/models";
+import {User, STask, Task, ETask, Grade} from "../model/models";
 import {LoginService} from "./login.service";
 
 @Injectable()
 export class TaskService {
+
+  private currentTask: Task = null;
 
   constructor(private http: Http, private loginService: LoginService) {
   }
@@ -36,5 +38,13 @@ export class TaskService {
     return this.http.put(url, toBeEdited)
       .map((response: Response) => (<Task>response.json()))
       .catch(error => Observable.throw(error.json()));
+  }
+
+  setCurrentTask(task: Task) {
+    this.currentTask = task;
+  }
+
+  getCurrentTask() {
+    return this.currentTask;
   }
 }

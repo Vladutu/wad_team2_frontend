@@ -1,7 +1,8 @@
-import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, AfterViewInit, Input, Output, EventEmitter} from "@angular/core";
+import {FolderNode} from "../model/models";
 
-declare var $:any;
-declare var jstree:any;
+declare var $: any;
+declare var jstree: any;
 
 @Component({
   selector: 'wad-jstree',
@@ -11,9 +12,9 @@ declare var jstree:any;
 export class JstreeComponent implements OnInit, AfterViewInit {
 
   @Input()
-  public treeStructure:any = {};
+  public treeStructure: FolderNode;
   @Output()
-  public onFileSelect:EventEmitter<any> = new EventEmitter();
+  public onFileSelect: EventEmitter<any> = new EventEmitter();
 
   constructor() {
   }
@@ -21,29 +22,32 @@ export class JstreeComponent implements OnInit, AfterViewInit {
   ngOnInit() {
   }
 
-  ngAfterViewInit():void {
-    var scope = this;
-    this.traverse(this.treeStructure);
-    var jsTree = $('#jstree');
-    jsTree.jstree({
-      'plugins': ['types'],
-      'core': {
-        'data': [this.treeStructure]
-      }
-    });
-    jsTree.on('changed.jstree', function (e, data) {
-      let nodeDetails = data.node.original;
-      if (nodeDetails.file) {
-        scope.onFileSelect.emit({
-          name: nodeDetails.text,
-          extension: nodeDetails.extension,
-          path: nodeDetails.path
-        });
-      }
-    });
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      var scope = this;
+      this.traverse(this.treeStructure);
+      var jsTree = $('#jstree');
+      jsTree.jstree({
+        'plugins': ['types'],
+        'core': {
+          'data': [this.treeStructure]
+        }
+      });
+      jsTree.on('changed.jstree', function (e, data) {
+        let nodeDetails = data.node.original;
+        if (nodeDetails.file) {
+          scope.onFileSelect.emit({
+            name: nodeDetails.text,
+            extension: nodeDetails.extension,
+            path: nodeDetails.path
+          });
+        }
+      });
+    }, 500);
+
   }
 
-  traverse(object):void {
+  traverse(object): void {
     var scope = this;
     var fileIcon = 'glyphicon glyphicon-file', folderIcon = 'glyphicon glyphicon-folder-open';
     var iconProperty = '';

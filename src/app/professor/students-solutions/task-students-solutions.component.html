@@ -21,8 +21,13 @@
             <div class="col-md-4">{{student.firstName + ' ' + student.lastName}}</div>
             <div class="col-md-2">{{student.mark}}</div>
             <div class="btn-group btn-group-xs pull-right">
-              <span class="label label-warning" style="margin-right: 10px">Edit grade</span>
-              <span class="label label-primary">View solution</span>
+              <button class="label label-warning" style="margin-right: 10px"
+                      (click)="openModalAndSaveStudent(student)" [disabled]="!deadlinePassed() || !solutionSent(student)"> Edit grade
+              </button>
+              <button class="label label-primary"
+                      [routerLink]="['../../', 'solutions',student.solutionId,'tasksolution']"
+                      [disabled]="!student.solutionId">View Solution
+              </button>
             </div>
           </div>
         </div>
@@ -50,3 +55,23 @@
     </wad-panel>
   </wad-panel-group>
 </div>
+
+<modal #gradeModal [keyboard]="!requesting" [backdrop]="!requesting" (onDismiss)="dismissModal()">
+  <form [formGroup]="gradeForm" (ngSubmit)="onFormSubmit()">
+    <modal-header [show-close]="true">
+      <h4 class="modal-title">Edit grade</h4>
+    </modal-header>
+    <modal-body>
+      <wad-loading [show]="requesting"></wad-loading>
+      <div class="form-group">
+        <label for="grade">Grade</label>
+        <input #gradeInput type="number" class="form-control" name="grade" id="grade" min="1" max="10"
+               formControlName="grade">
+      </div>
+    </modal-body>
+    <modal-footer>
+      <button type="button" class="btn btn-default" (click)="closeModal()">Cancel</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!gradeForm.valid">Edit</button>
+    </modal-footer>
+  </form>
+</modal>
