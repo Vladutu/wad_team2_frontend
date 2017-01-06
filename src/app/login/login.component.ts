@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
 
   private error: boolean = false;
 
+  private requesting: boolean = false;
 
   constructor(private loginService: LoginService, private router: Router) {
   }
@@ -30,17 +31,20 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.userLogin = this.loginForm.value;
+    this.requesting = true;
     this.loginService.authenticate(this.userLogin)
-      .subscribe((user: User)=> {
+      .subscribe((user: User) => {
           localStorage.removeItem('auth');
           localStorage.setItem('auth', JSON.stringify(user));
 
+          this.requesting = false;
           let path: string = "/" + user.role.toLowerCase();
           this.router.navigate([path]);
         },
         error => {
           this.error = true;
-          setTimeout(()=> {
+          this.requesting = false;
+          setTimeout(() => {
             this.error = false;
           }, 2000)
         })

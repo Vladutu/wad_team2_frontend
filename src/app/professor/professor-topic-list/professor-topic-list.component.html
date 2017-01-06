@@ -13,7 +13,7 @@
       </div>
     </div>
   </div>
-
+  
   <wad-panel-group>
     <!--Each wad-panel represents a Topic-->
     <wad-panel *ngFor="let topic of topics">
@@ -27,7 +27,7 @@
           </button>
         </div>
       </wad-panel-header>
-
+      
       <!--Body contains all the tasks of the respective topic-->
       <wad-panel-body>
         <wad-panel-group *ngFor="let task of topic.tasks">
@@ -36,12 +36,12 @@
               <!--One panel represents a Task-->
               <div class="panel panel-default">
                 <div class="panel-body panel-task cursor-hand">
-                  <a [routerLink]="['task-students-solutions']">{{task.name}}</a>
-
+                  <a (click)="travelRoute(task)">{{task.name}}</a>
+                  
                   <div class="btn-group btn-group-xs pull-right">
                     <span class="label label-default">{{task.testsEnabled?'Automated Test':'Manual Test'}}</span>
-                  <span
-                    class="label label-primary">{{task.plagiarismAnalyserEnabled?'Anti-Plagiarism':'No Anti-Plagiarism'}}</span>
+                    <span
+                      class="label label-primary">{{task.plagiarismAnalyserEnabled?'Anti-Plagiarism':'No Anti-Plagiarism'}}</span>
                     <span class="label label-danger">Deadline:{{task.deadline}}</span>
                     <span class="label label-warning">Uploads {{task.sentSolutions}}/{{task.noStudents}}</span>
                   </div>
@@ -56,16 +56,16 @@
       </wad-panel-body>
     </wad-panel>
   </wad-panel-group>
-
+  
   <footer class="footer-small">
     <p>This is the management panel for all the tasks you assign to your students.</p>
-
+    
     <p>Add/Remove tasks and edit them using the panels above.</p>
-
+    
     <p>Contact information: <a href="mailto:help@eapp.com">
       help@eapp.com</a>.</p>
   </footer>
-
+  
   <modal #topicModal [keyboard]="!requesting" [backdrop]="!requesting" (onDismiss)="dismissTopicModal()">
     <form [formGroup]="topicForm" (ngSubmit)="onTopicFormSubmit()">
       <modal-header [show-close]="true">
@@ -84,7 +84,7 @@
       </modal-footer>
     </form>
   </modal>
-
+  
   <modal #taskModal [keyboard]="!requesting" [backdrop]="!requesting" (onDismiss)="dismissTaskModal()">
     <form [formGroup]="taskForm" (ngSubmit)="onTaskFormSubmit()">
       <modal-header [show-close]="true">
@@ -96,18 +96,18 @@
           <label for="name">Name</label>
           <input type="text" class="form-control" name="name" id="name" formControlName="name">
         </div>
-
+        
         <div class="form-group">
           <label for="name">Description</label>
-        <textarea type="text" class="form-control textarea-description" name="name"
-                  id="description" formControlName="description"></textarea>
+          <textarea type="text" class="form-control textarea-description" name="name"
+                    id="description" formControlName="description"></textarea>
         </div>
-
+        
         <div class="form-group">
           <label for="name">Deadline</label>
           <input class="form-control" type="date" name="deadline" formControlName="deadline">
         </div>
-
+        
         <div class="form-group">
           <label for="name">Language</label>
           <select formControlName="language" class="form-control">
@@ -116,21 +116,21 @@
             <option value="C">C</option>
           </select>
         </div>
-
+        
         <div class="form-group">
           <label>Subgroups</label>
           <select class="form-control" multiple (change)="onSubgroupListChange($event)">
             <option *ngFor="let subgroup of subgroups">{{subgroup.name}}</option>
           </select>
-
+        
         </div>
-
+        
         <div class="form-group">
           <div class="checkbox">
             <label><input type="checkbox" (click)="toggleTests()" formControlName="testsEnabled">Enable
               Tests</label>
           </div>
-
+          
           <div *ngIf="testsEnabled">
             <input #inputFile type="file" class="form-control" (change)="onFileChange(inputFile, 'inputFile')">
             <input type="hidden" formControlName="inputFile">
@@ -138,14 +138,14 @@
             <input type="hidden" formControlName="outputFile">
           </div>
         </div>
-
+        
         <div class="form-group">
           <div class="checkbox">
             <label><input type="checkbox" formControlName="plagiarismEnabled">Enable
               Anti-Plagiarism</label>
           </div>
         </div>
-
+      
       </modal-body>
       <modal-footer>
         <button type="button" class="btn btn-default" (click)="closeTaskModal()">Cancel</button>

@@ -87,7 +87,8 @@ export class STopic {
 
 export class SolutionStudent {
   constructor(public id: number, public ssn: string, public firstName: string, public lastName: string, public email: string,
-              public gender: string, public username: string, public subgroup: string, public mark: string) {
+              public gender: string, public username: string, public subgroup: string, public mark: string,
+              public solutionId: number) {
   }
 }
 
@@ -111,6 +112,12 @@ export class FilePath {
 
 export class Content {
   constructor(public content: string) {
+
+  }
+}
+
+export class Grade {
+  constructor(public mark: number) {
 
   }
 }

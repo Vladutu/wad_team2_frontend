@@ -6,6 +6,7 @@ import {FormGroup, FormControl, Validators, FormArray} from "@angular/forms";
 import {SubgroupService} from "../../service/subgroup.service";
 import {TaskService} from "../../service/task.service";
 import {TaskBuilder} from "../../builder/builders";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -37,7 +38,8 @@ export class ProfessorTopicListComponent implements OnInit {
 
 
   constructor(private topicService: TopicService, private subgroupService: SubgroupService,
-              private taskBuilder: TaskBuilder, private taskService: TaskService) {
+              private taskBuilder: TaskBuilder, private taskService: TaskService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -176,7 +178,7 @@ export class ProfessorTopicListComponent implements OnInit {
     }
   }
 
-  private fileValidator(control: FormGroup): { [key: string]: any; } {
+  private fileValidator(control: FormGroup): {[key: string]: any;} {
     let testsEnabled: boolean = control.get('testsEnabled').value;
     let inputFile: string = control.get('inputFile').value;
     let outputFile: string = control.get('outputFile').value;
@@ -188,12 +190,17 @@ export class ProfessorTopicListComponent implements OnInit {
     return null;
   }
 
-  private subgroupsValidator(control: FormArray): { [key: string]: any; } {
+  private subgroupsValidator(control: FormArray): {[key: string]: any;} {
     if (control.length == 0) {
       return {key: true};
     }
 
     return null;
+  }
+
+  private travelRoute(task: Task) {
+    this.taskService.setCurrentTask(task);
+    this.router.navigateByUrl("/professor/topics/task-students-solutions");
   }
 
 }

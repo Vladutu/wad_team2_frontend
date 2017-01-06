@@ -6,6 +6,7 @@
         <img class="profile-img" src="../assets/images/logo.png"
              alt="">
         <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <wad-loading [show]="requesting"></wad-loading>
           <input type="text" class="form-control" placeholder="Username" formControlName="username">
           <input type="password" class="form-control" placeholder="Password" formControlName="password">
           <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!loginForm.valid">
