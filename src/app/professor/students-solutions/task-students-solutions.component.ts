@@ -16,8 +16,6 @@ export class TaskStudentsSolutionsComponent implements OnInit {
 
   private students: SolutionStudent[] = [];
 
-  private otherStudents: SolutionOtherStudents[] = [];
-
   private currentTask: Task = null;
 
   private currentStudent: SolutionStudent = null;
@@ -28,6 +26,8 @@ export class TaskStudentsSolutionsComponent implements OnInit {
   private requesting: boolean = false;
 
   private gradeForm: FormGroup;
+
+  private map: any = {};
 
   constructor(private studentService: SolutionStudentService, private taskService: TaskService,
               private dateParserService: DateParserService) {
@@ -45,6 +45,9 @@ export class TaskStudentsSolutionsComponent implements OnInit {
     this.studentService.getStudentsByTask(this.currentTask.id)
       .subscribe((students: SolutionStudent[]) => {
         this.students = students;
+        for (let student of students) {
+          this.getOtherStudentsSimilarity(student.id);
+        }
       }, error => console.log(error));
   }
 
@@ -87,5 +90,19 @@ export class TaskStudentsSolutionsComponent implements OnInit {
 
   private solutionSent(student: SolutionStudent) {
     return student.solutionId != null;
+  }
+
+  private getOtherStudentsSimilarity(studentId: number) {
+    this.studentService.getOtherStudentsSimilarity(this.currentTask.id, studentId)
+      .subscribe((students: SolutionOtherStudents[]) => {
+        this.map[studentId] = students;
+      }, error => {
+        console.log(error);
+      })
+
+  }
+
+  private getOtherSimilarityFromMap(studentId:number){
+    return this.map[studentId];
   }
 }

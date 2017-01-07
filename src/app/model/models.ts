@@ -94,7 +94,8 @@ export class SolutionStudent {
 
 export class SolutionOtherStudents {
   constructor(public id: number, public ssn: string, public firstName: string, public lastName: string, public email: string,
-              public gender: string, public username: string, public subgroup: string, public similarityPercent: string) {
+              public gender: string, public username: string, public subgroup: string, public similarityPercent: string,
+              public url: string) {
   }
 }
 
