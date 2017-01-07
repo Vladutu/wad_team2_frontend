@@ -18,11 +18,12 @@
         <!--One panel represents a Task-->
         <div class="panel panel-default">
           <div class="panel-body panel-task row wad-padding-row cursor-hand" id="student-details-container">
-            <div class="col-md-4">{{student.firstName + ' ' + student.lastName}}</div>
+            <div class="col-md-4">{{student.firstName + ' ' + student.lastName + '(' + student.id + ')'}}</div>
             <div class="col-md-2">{{student.mark}}</div>
             <div class="btn-group btn-group-xs pull-right">
               <button class="label label-warning" style="margin-right: 10px"
-                      (click)="openModalAndSaveStudent(student)" [disabled]="!deadlinePassed() || !solutionSent(student)"> Edit grade
+                      (click)="openModalAndSaveStudent(student)"
+                      [disabled]="!deadlinePassed() || !solutionSent(student)"> Edit grade
               </button>
               <button class="label label-primary"
                       [routerLink]="['../../', 'solutions',student.solutionId,'tasksolution']"
@@ -35,22 +36,22 @@
       
       <!--Body contains all the tasks of the respective topic-->
       <wad-panel-body>
-        <wad-panel-group>
-          <wad-panel *ngFor="let student of otherStudents">
-            <wad-panel-header>
-              <!--One panel represents a Task-->
-              <div class="panel panel-default">
-                <div class="panel-body panel-task row wad-padding-row cursor-hand">
-                  <div class="col-md-4">Other students</div>
-                  <div class="col-md-2">Plagiarism</div>
-                  <div class="btn-group btn-group-xs pull-right">
-                    <span class="label label-default">Compare solutions</span>
-                  </div>
-                </div>
-              </div>
-            </wad-panel-header>
-          </wad-panel>
-        </wad-panel-group>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Other Student</th>
+              <th>Similarity Score</th>
+              <th>Compare solutions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let othStd of getOtherSimilarityFromMap(student.id)">
+              <td>{{othStd.firstName + ' ' + othStd.lastName + '(' + othStd.id + ')'}}</td>
+              <td>{{othStd.similarityPercent}}</td>
+              <td><a target="_blank" [href]="othStd.url">Click here</a></td>
+            </tr>
+          </tbody>
+        </table>
       </wad-panel-body>
     </wad-panel>
   </wad-panel-group>

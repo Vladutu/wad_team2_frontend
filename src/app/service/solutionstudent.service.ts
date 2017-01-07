@@ -3,7 +3,7 @@ import {Http, Response} from "@angular/http";
 import "rxjs/Rx";
 import {Observable} from "rxjs";
 import {BASE_URL} from "./server";
-import {SolutionStudent, User, Grade} from "../model/models";
+import {SolutionStudent, User, Grade, SolutionOtherStudents} from "../model/models";
 import {LoginService} from "./login.service";
 
 @Injectable()
@@ -18,6 +18,14 @@ export class SolutionStudentService {
 
     return this.http.get(url)
       .map((response: Response) => (<SolutionStudent[]>response.json()))
+      .catch(error => Observable.throw(error.json()));
+  }
+
+  public getOtherStudentsSimilarity(taskId: number, studentId: number) {
+    let url: string = BASE_URL + "/professors/tasks/" + taskId + "/students/" + studentId + "/plagiarismResult";
+
+    return this.http.get(url)
+      .map((response: Response) => (<SolutionOtherStudents[]>response.json()))
       .catch(error => Observable.throw(error.json()));
   }
 
