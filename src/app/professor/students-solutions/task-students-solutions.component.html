@@ -45,9 +45,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let othStd of getOtherSimilarityFromMap(student.id)">
+            <tr *ngFor="let othStd of getOtherSimilarityFromMap(student.id)"
+                [ngClass]="{'success':othStd.similarityPercent < 20, 'warning':othStd.similarityPercent >=20 &&
+                othStd.similarityPercent <50, 'danger':othStd.similarityPercent >=50}">
               <td>{{othStd.firstName + ' ' + othStd.lastName + '(' + othStd.id + ')'}}</td>
-              <td>{{othStd.similarityPercent}}</td>
+              <td>{{othStd.similarityPercent + ' %'}}</td>
               <td><a target="_blank" [href]="othStd.url">Click here</a></td>
             </tr>
           </tbody>

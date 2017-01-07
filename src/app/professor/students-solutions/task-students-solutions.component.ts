@@ -95,14 +95,14 @@ export class TaskStudentsSolutionsComponent implements OnInit {
   private getOtherStudentsSimilarity(studentId: number) {
     this.studentService.getOtherStudentsSimilarity(this.currentTask.id, studentId)
       .subscribe((students: SolutionOtherStudents[]) => {
-        this.map[studentId] = students;
+        this.map[studentId] = students.sort((s1, s2) => +s2.similarityPercent - +s1.similarityPercent);
       }, error => {
         console.log(error);
       })
 
   }
 
-  private getOtherSimilarityFromMap(studentId:number){
+  private getOtherSimilarityFromMap(studentId: number) {
     return this.map[studentId];
   }
 }
