@@ -17,7 +17,7 @@
     <wad-panel-header>
       {{topic.name}}
     </wad-panel-header>
-    
+
     <!--Body contains all the tasks of the respective topic-->
     <wad-panel-body>
       <!--One panel represents a Task-->
@@ -67,7 +67,11 @@
                   <div class="col-md-6">
                     <div class="fileUpload btn btn-primary">
                       <span>Upload Solution</span>
-                      <input type="file" class="upload"/>
+                      <input type="file" class="upload" (change)="uploadSolutionFile($event)"/>
+                    </div>
+                    <div class="file-upload-confirm">
+                      <span id="wad-solution-file-name">{{filename}}</span>
+                      <div class="btn btn-xs" id="wad-confirm-file-upload" *ngIf="isClassVisible" (click)="sendSolution()">Send</div>
                     </div>
                   </div>
                 </div>

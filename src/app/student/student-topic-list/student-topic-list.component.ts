@@ -10,6 +10,9 @@ import {StudentTopic} from "../../model/models";
 export class StudentTopicListComponent implements OnInit {
 
   private studentTopics: StudentTopic[] = [];
+  private filename: String = '';
+  private isClassVisible: boolean = false;
+  private file: any;
 
   constructor(private topicService: TopicService) {
   }
@@ -25,5 +28,17 @@ export class StudentTopicListComponent implements OnInit {
 
   private isNumber(value: string) {
     return !isNaN(+value);
+  }
+
+  uploadSolutionFile(event) {
+    this.file = event.srcElement.files;
+    var filename = this.file[0].name;
+    console.log(this.file);
+    //$('#wad-solution-file-name').val(file);
+    this.filename = filename;
+    this.isClassVisible = true;
+  }
+  sendSolution() {
+   console.log(this.file);
   }
 }
