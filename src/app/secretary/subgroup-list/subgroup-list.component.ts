@@ -81,9 +81,9 @@ export class SubgroupListComponent implements OnInit {
 
 
   private closeModal() {
-    this.dismissModal();
-    this.formModal.close();
-  }
+  this.dismissModal();
+  this.formModal.close();
+}
 
   private dismissModal() {
     this.requesting = false;
