@@ -7,13 +7,47 @@
             <img src="../../assets/images/logo.png" class="wad-navbar-brand-img"/>
       </span>
     </div>
-    
+
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a [routerLink]="['topics']">Topics</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown dropdown-notifications" wad-dropdown>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+             aria-expanded="false">
+            <i data-count="2" class="glyphicon glyphicon-bell notification-icon"></i>
+          </a>
+              <ul class="dropdown-menu">
+                <li class="notification">
+                  <div class="media">
+                    <div class="media-body">
+                      <strong class="notification-title"><a href="#">Dave Lister</a> commented on <a href="#">DWARF-13 - Maintenance</a></strong>
+                      <p class="notification-desc">I totally don't wanna do it. Rimmer can do it.</p>
+
+                      <div class="notification-meta">
+                        <small class="timestamp">27. 11. 2015, 15:00</small>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="notification">
+                  <div class="media">
+                    <div class="media-body">
+                      <strong class="notification-title"><a href="#">Nikola Tesla</a> resolved <a href="#">T-14 - Awesome stuff</a></strong>
+
+                      <p class="notification-desc">Resolution: Fixed, Work log: 4h</p>
+
+                      <div class="notification-meta">
+                        <small class="timestamp">27. 10. 2015, 08:00</small>
+                      </div>
+
+                    </div>
+                  </div>
+                </li>
+              </ul>
+        </li><!-- /dropdown -->
         <li class="dropdown" wad-dropdown>
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
              aria-expanded="false">Account <span class="caret"></span></a>
