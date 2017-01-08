@@ -17,7 +17,7 @@
     <wad-panel-header>
       {{topic.name}}
     </wad-panel-header>
-
+    
     <!--Body contains all the tasks of the respective topic-->
     <wad-panel-body>
       <!--One panel represents a Task-->
@@ -27,6 +27,8 @@
             <div class="panel panel-default">
               <div class="panel-body panel-task cursor-hand"><a>{{task.name}}</a>
                 <div class="btn-group btn-group-xs pull-right">
+                  <span class="label" [ngClass]="{'label-success':task.solutionSent,'label-danger':!task.solutionSent}">
+                    {{task.solutionSent?'Solution sent':'Solution not send'}}</span>
                   <span class="label label-default">{{task.testsEnabled?'Automated Test':'Manual Test'}}</span>
                   <span class="label label-danger">Deadline: {{task.deadline}}</span>
                   <span class="label"
@@ -65,13 +67,17 @@
                     </li>
                   </div>
                   <div class="col-md-6">
-                    <div class="fileUpload btn btn-primary">
+                    <button class="fileUpload btn btn-primary" [disabled]="deadlinePassed(task.deadline)">
                       <span>Upload Solution</span>
-                      <input type="file" class="upload" (change)="uploadSolutionFile($event)"/>
-                    </div>
+                      <input type="file" class="upload" (change)="uploadSolutionFile($event)"
+                             [disabled]="deadlinePassed(task.deadline)"/>
+                    </button>
+                    <span *ngIf="deadlinePassed(task.deadline)" style="color: red">Deadline passed. You can no longed submit solutions.</span>
                     <div class="file-upload-confirm">
                       <span id="wad-solution-file-name">{{filename}}</span>
-                      <div class="btn btn-xs" id="wad-confirm-file-upload" *ngIf="isClassVisible" (click)="sendSolution()">Send</div>
+                      <div class="btn btn-xs btn-success" id="wad-confirm-file-upload" *ngIf="isClassVisible"
+                           (click)="sendSolution(task.id)">Send
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -91,3 +97,14 @@
   <p>Contact information: <a href="mailto:help@eapp.com">
     help@eapp.com</a>.</p>
 </footer>
+
+<modal #loadingModal [keyboard]="!requesting" [backdrop]="!requesting">
+  <modal-header [show-close]="true">
+    <h4 class="modal-title" *ngIf="requesting">Sending solution.Please wait...</h4>
+    <h4 class="modal-title" *ngIf="!requesting">Solution sent <b>{{error?'unsuccessfully':'successfully'}}</b></h4>
+  </modal-header>
+  <modal-body>
+    <wad-loading [show]="requesting"></wad-loading>
+    <p class="h4">{{message}}</p>
+  </modal-body>
+</modal>
