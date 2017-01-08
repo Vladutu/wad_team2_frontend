@@ -3,7 +3,7 @@ import {Http, Response} from "@angular/http";
 import "rxjs/Rx";
 import {Observable} from "rxjs";
 import {BASE_URL} from "./server";
-import {Topic, User, STopic} from "../model/models";
+import {Topic, User, STopic, StudentTopic} from "../model/models";
 import {LoginService} from "./login.service";
 
 @Injectable()
@@ -35,6 +35,15 @@ export class TopicService {
 
     return this.http.delete(url)
       .map((response: Response)=>(<Topic>response.json()))
+      .catch(error => Observable.throw(error.json()));
+  }
+
+  public getStudentTopics(){
+    let user:User = this.loginService.getAuthenticatedUser();
+    let url:string = BASE_URL + "/students/" + user.id + "/topics";
+
+    return this.http.get(url)
+      .map((response: Response) => (<StudentTopic[]>response.json()))
       .catch(error => Observable.throw(error.json()));
   }
 

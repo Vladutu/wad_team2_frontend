@@ -14,3 +14,7 @@ body {
 .wad-navbar-brand-img {
   height: 100%;
 }
+
+.cursor-hand {
+  cursor: pointer;
+}

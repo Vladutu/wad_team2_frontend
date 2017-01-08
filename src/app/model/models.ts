@@ -122,3 +122,16 @@ export class Grade {
 
   }
 }
+
+export class StudentTask {
+  constructor(public id: number, public deadline: string, public description: string, public language: string,
+              public mark: string, public name: string, public testsEnabled: boolean) {
+
+  }
+}
+
+export class StudentTopic {
+  constructor(public id: number, public name: string, public tasks: StudentTask[]) {
+
+  }
+}

@@ -1,18 +1,92 @@
 .panel-body.panel-task {
-    border-bottom: inset;
+  border-bottom: inset;
 }
 
 .panel-body.panel-task.last-panel {
-    border-bottom:none;
+  border-bottom: none;
 }
 
 /* Footer Font Size */
 
 .footer-small {
-    font-size: 13px
+  font-size: 13px
 }
 
 .cursor-hand {
   cursor: pointer;
 }
 
+#details body {
+  background-color: #e9ebee;
+}
+
+#details .jumbotron p, .wad-task-container p {
+  font-size: 20px
+}
+
+#details .jumbotron {
+  background-color: white;
+  border-radius: 0;
+}
+
+#details .wad-task-details-header {
+  margin-top: 30px;
+}
+
+#details .wad-task-container {
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+#details .fileUpload {
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  float: right;
+  border-radius: 2px;
+}
+
+#details .fileUpload input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+#details .cursor-not-allowed {
+  cursor: not-allowed !important;
+}
+
+#details .wad-warning-notification {
+  color: #ed3f7e;
+}
+
+#details #wad-plagiarism-notification {
+  float: right;
+}
+
+#details .wad-row {
+  margin-bottom: 30px;
+}
+
+#details .list-group-item {
+  text-align: center;
+}
+
+#details .wad-list-item-headline {
+  font-size: 21px;
+}
+
+#details .no-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#details .no-padding-right {
+  padding-right: 0;
+}
