@@ -24,4 +24,8 @@ export class LoginService {
 
     return <User>JSON.parse(auth);
   }
+
+  public logout() {
+    localStorage.removeItem('auth');
+  }
 }

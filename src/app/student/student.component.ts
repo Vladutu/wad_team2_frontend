@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
+import {Router} from "@angular/router";
+import {LoginService} from "../service/login.service";
 
 @Component({
   selector: 'wad-student',
@@ -7,11 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentComponent implements OnInit {
 
-  constructor() {
-
+  constructor(private loginService: LoginService, private router: Router) {
   }
 
   ngOnInit() {
+  }
+
+  private logout() {
+    this.loginService.logout();
+    this.router.navigateByUrl("/");
   }
 
 }

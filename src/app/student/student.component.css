@@ -2,7 +2,7 @@ body {
     background-color: #e9ebee;
 }
 .wad-navbar {
-    border-radius: 0; 
+    border-radius: 0;
 }
 .wad-navbar-brand {
     padding: 13px 15px;
@@ -13,4 +13,8 @@ body {
 }
 .student-container {
     background-color: #e9ebee;
+}
+
+.cursor-hand {
+  cursor: pointer;
 }

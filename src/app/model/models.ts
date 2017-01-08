@@ -122,3 +122,28 @@ export class Grade {
 
   }
 }
+
+export class StudentTask {
+  constructor(public id: number, public deadline: string, public description: string, public language: string,
+              public mark: string, public name: string, public testsEnabled: boolean, public solutionSent:boolean) {
+
+  }
+}
+
+export class StudentTopic {
+  constructor(public id: number, public name: string, public tasks: StudentTask[]) {
+
+  }
+}
+
+export class SolutionFile {
+  constructor(public inputFile: string) {
+
+  }
+}
+
+export class SolutionResponse {
+  constructor(public error: boolean, public message: string) {
+
+  }
+}
