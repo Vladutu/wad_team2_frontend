@@ -1,6 +1,16 @@
 .not-seen {
-  background-color: #beebff;
+  background-color: #edf2fa;
 }
 .cursor-hand {
   cursor: pointer;
+}
+.notification {
+  border-bottom: 1px solid #aaa;
+}
+.dropdown-toggle {
+  color: white;
+  background-color: transparent !important;
+}
+a[aria-expanded="true"] {
+  color: #18bc9c;
 }

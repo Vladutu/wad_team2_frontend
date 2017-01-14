@@ -21,7 +21,7 @@ export class Notifications implements OnInit {
 
   ngOnInit() {
     this.getUnseenNotifications();
-    this.handler = setInterval(() => this.getUnseenNotifications(), 10000);
+    //this.handler = setInterval(() => this.getUnseenNotifications(), 10000);
   }
 
   getUnseenNotifications(){
