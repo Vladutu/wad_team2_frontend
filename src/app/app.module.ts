@@ -43,6 +43,8 @@ import {LanguagePipe} from "./pipes/language.pipe";
 import {SolutionStudentService} from "./service/solutionstudent.service";
 import {SolutionService} from "./service/solution.service";
 import {TaskStudentsSolutionsComponent} from "./professor/students-solutions/task-students-solutions.component";
+import {NotificationsService} from "./service/notification.service";
+import {Notifications} from "./notification/notifications";
 
 @NgModule({
   declarations: [
@@ -69,7 +71,8 @@ import {TaskStudentsSolutionsComponent} from "./professor/students-solutions/tas
     TaskEditComponent,
     LanguagePipe,
     TaskSolutionComponent,
-    TaskStudentsSolutionsComponent
+    TaskStudentsSolutionsComponent,
+    Notifications
   ],
   imports: [
     BrowserModule,
@@ -83,7 +86,7 @@ import {TaskStudentsSolutionsComponent} from "./professor/students-solutions/tas
   ],
   providers: [ProfessorListGuard, LoginService, SubgroupService, ProfessorService, ESProfessorBuilder, StudentService,
     ESStudentBuilder, TopicService, TaskService, TaskBuilder, DateParserService, SolutionStudentService,
-    SolutionService],
+    SolutionService, NotificationsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

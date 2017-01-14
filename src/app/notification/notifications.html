@@ -1,0 +1,19 @@
+<li class="dropdown dropdown-notifications">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+     aria-expanded="false">
+    <i [attr.data-count] = "unseenNumber" class="glyphicon glyphicon-bell notification-icon"></i>
+  </a>
+  <ul class="dropdown-menu">
+    <li class="notification" *ngFor="let unseenNotification of unseenNotifications" data-id="{{unseenNotification.id}}"
+        [ngClass]="{'not-seen': !unseenNotification.seen }" (click)="onNotificationClick(unseenNotification, $event)">
+      <div class="media">
+        <div class="media-body">
+          <p class="notification-desc">{{unseenNotification.message}}</p>
+          <div class="notification-meta">
+            <small class="timestamp">{{unseenNotification.date}}</small>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</li>

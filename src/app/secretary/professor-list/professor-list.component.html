@@ -23,7 +23,7 @@
     [sortable]="{mode: 'multiple'}"
     (sortChange)="sortChange($event)"
   >
-    <kendo-grid-column title="ID">
+    <kendo-grid-column title="ID" width="50">
       <template kendoCellTemplate let-rowIndex="rowIndex">
         {{rowIndex + 1}}
       </template>
@@ -39,7 +39,7 @@
       <template kendoHeaderTemplate>
         <span class="glyphicon glyphicon-cog center-text"></span>
       </template>
-      
+
       <template kendoCellTemplate let-dataItem>
         <a class="btn btn-default"><span class="glyphicon glyphicon-edit center" (click)="onEdit(dataItem)"></span></a>
         <a class="btn btn-danger" (click)="onDelete(dataItem)"><span

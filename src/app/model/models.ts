@@ -147,3 +147,8 @@ export class SolutionResponse {
 
   }
 }
+export class UnseenNotifications {
+  constructor(public date: string, public id: number,public message: string,public seen: boolean){
+
+  }
+}

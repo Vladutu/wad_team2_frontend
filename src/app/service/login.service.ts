@@ -22,6 +22,9 @@ export class LoginService {
   public getAuthenticatedUser(): User {
     let auth: string = localStorage.getItem('auth');
 
+    if(auth == null){
+      return new User(null, null, null, null, null, null, null, null, null);
+    }
     return <User>JSON.parse(auth);
   }
 
