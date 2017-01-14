@@ -20,7 +20,8 @@
       "styles": [
         "../node_modules/bootstrap/dist/css/bootstrap.css",
         "assets/css/bootstrap.min.css",
-        "styles.scss"
+        "styles.scss",
+        "assets/css/bootstrap-notifications.min.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.js",

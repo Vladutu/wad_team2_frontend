@@ -5,53 +5,47 @@ import {Router} from "@angular/router";
 import {LoginService} from "../service/login.service";
 import {UnseenNotifications} from "../model/models";
 
-@Directive({
-  selector: '[wad-notifications]'
+@Component({
+  selector: 'wad-notifications',
+  templateUrl: './notifications.html',
+  styleUrls: ['./notifications.css']
 })
 
-export class Notifications {
-  private unseenNotifications: UnseenNotifications;
-  private unseenNotificationsNumber: number;
-  private isOpen: boolean = false;
-
-  @HostBinding('class.open') get opened() {
-    return this.isOpen;
-  }
-
-  @HostListener('mouseenter') open() {
-    this.isOpen = true;
-  }
-
-  @HostListener('mouseleave') close() {
-    this.isOpen = false;
-  }
+export class Notifications implements OnInit {
+  private unseenNotifications: UnseenNotifications[] = [];
+  private unseenNumber: number;
 
   constructor(private loginService: LoginService, private router: Router, private notificationsService: NotificationsService) {
   }
 
   ngOnInit() {
-    this.notificationsService.getUnseenNotifications().subscribe((unseenNotifications: UnseenNotifications) => {
+    this.getUnseenNotifications();
+    setInterval(() => this.getUnseenNotifications(), 10000);
+  }
+
+  getUnseenNotifications(){
+    this.notificationsService.getUnseenNotifications().subscribe((unseenNotifications: UnseenNotifications[]) => {
       this.unseenNotifications = unseenNotifications;
-      //this.unseenNotificationsNumber = unseenNotifications;
-      console.log(this.unseenNotifications);
+      this.unseenNumber = this.unseenNotifications.length;
+      for(let notification of this.unseenNotifications){
+        notification.date = notification.date.replace('T',' ');
+      }
+      console.log(this.unseenNumber);
     }, error => {
       console.log(error);
     })
-    this.generateUnseenNotifications();
   }
 
-  private logout() {
-    this.loginService.logout();
-    this.router.navigateByUrl("/");
-  }
-
-  private generateUnseenNotifications() {
-  var notification = '<li class="notification">' +
-  '<div class="media">' +
-      '<div class="media-body">' +
-      '<p class="notification-desc">I totally don\'t wanna do it. Rimmer can do it.</p>' +
-
-      '<div class="notification-meta">' +
-      '<small class="timestamp">27. 11. 2015, 15:00</small></div> </div> </div> </li>';
+  onNotificationClick(notification:UnseenNotifications, event:any) {
+    event.stopPropagation();
+    this.notificationsService.setNotificationSeen(notification.id).subscribe((notification:any) => {
+    if(notification.seen == false ) {
+      this.unseenNumber--;
+    }
+    notification.seen = true;
+    },
+    error => {
+      console.log(error);
+    });
   }
 }

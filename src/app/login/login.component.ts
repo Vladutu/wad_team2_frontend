@@ -23,6 +23,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    var authenticatedUser:User = this.loginService.getAuthenticatedUser();
+    if(authenticatedUser.username){
+      let path: string = "/" + authenticatedUser.role.toLowerCase();
+      this.router.navigate([path]);
+    }
     this.loginForm = new FormGroup({
       'username': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(30)]),
       'password': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(30)])

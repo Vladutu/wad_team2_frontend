@@ -14,26 +14,7 @@
         <li><a [routerLink]="['topics']">Topics</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown dropdown-notifications" wad-notifications>
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-             aria-expanded="false">
-            <i data-count="2" class="glyphicon glyphicon-bell notification-icon"></i>
-          </a>
-              <ul class="dropdown-menu">
-                <li class="notification">
-                  <div class="media">
-                    <div class="media-body">
-                      <strong class="notification-title"><a href="#">Dave Lister</a> commented on <a href="#">DWARF-13 - Maintenance</a></strong>
-                      <p class="notification-desc">I totally don't wanna do it. Rimmer can do it.</p>
-
-                      <div class="notification-meta">
-                        <small class="timestamp">27. 11. 2015, 15:00</small>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-        </li><!-- /dropdown -->
+        <wad-notifications class="wad-notifications"></wad-notifications><!-- /dropdown -->
         <li class="dropdown" wad-dropdown>
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
              aria-expanded="false">Account <span class="caret"></span></a>

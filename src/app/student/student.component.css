@@ -18,3 +18,11 @@ body {
 .cursor-hand {
   cursor: pointer;
 }
+
+.wad-notifications {
+  float: left;
+  position: relative;
+  display: block;
+  top: 20px;
+  right: 10px;
+}

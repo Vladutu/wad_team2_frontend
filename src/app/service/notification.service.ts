@@ -20,4 +20,10 @@ export class NotificationsService {
       .map((response: Response) => (<UnseenNotifications>response.json()))
       .catch(error => Observable.throw(error.json()));
   }
+  public setNotificationSeen(notificationId: number){
+    let url: string = BASE_URL + "/users/notifications/" + notificationId + "/seen";
+      return this.http.put(url, null)
+        .map((response: Response) => (<any>response.json()))
+        .catch(error => Observable.throw(error.json()));
+  }
 }
