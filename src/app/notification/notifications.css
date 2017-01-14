@@ -1,3 +1,6 @@
 .not-seen {
   background-color: #beebff;
 }
+.cursor-hand {
+  cursor: pointer;
+}

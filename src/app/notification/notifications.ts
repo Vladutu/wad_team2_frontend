@@ -38,13 +38,13 @@ export class Notifications implements OnInit {
   onNotificationClick(notification:UnseenNotifications, event:any) {
     event.stopPropagation();
     this.notificationsService.setNotificationSeen(notification.id).subscribe((notification:any) => {
-    if(notification.seen == false ) {
-      this.unseenNumber--;
-    }
-    notification.seen = true;
     },
     error => {
       console.log(error);
     });
+    if(notification.seen == false ) {
+      this.unseenNumber--;
+    }
+    notification.seen = true;
   }
 }
