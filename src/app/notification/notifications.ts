@@ -14,16 +14,21 @@ import {UnseenNotifications} from "../model/models";
 export class Notifications implements OnInit {
   private unseenNotifications: UnseenNotifications[] = [];
   private unseenNumber: number;
+  private handler: any;
 
   constructor(private loginService: LoginService, private router: Router, private notificationsService: NotificationsService) {
   }
 
   ngOnInit() {
     this.getUnseenNotifications();
-    setInterval(() => this.getUnseenNotifications(), 10000);
+    this.handler = setInterval(() => this.getUnseenNotifications(), 10000);
   }
 
   getUnseenNotifications(){
+    if(!this.loginService.getAuthenticatedUser().username){
+      clearInterval(this.handler);
+      return ;
+    }
     this.notificationsService.getUnseenNotifications().subscribe((unseenNotifications: UnseenNotifications[]) => {
       this.unseenNotifications = unseenNotifications;
       this.unseenNumber = this.unseenNotifications.length;
