@@ -30,7 +30,6 @@ export class Notifications implements OnInit {
       for(let notification of this.unseenNotifications){
         notification.date = notification.date.replace('T',' ');
       }
-      console.log(this.unseenNumber);
     }, error => {
       console.log(error);
     })
