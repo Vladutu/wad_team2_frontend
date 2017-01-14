@@ -5,6 +5,7 @@ import {AppComponent} from "./app.component";
 import {LoginComponent} from "./login/login.component";
 import {SecretaryComponent} from "./secretary/secretary.component";
 import {DropdownDirective} from "./directive/dropdown.directive";
+import {Notifications} from "./notification/notifications";
 import {SubgroupListComponent} from "./secretary/subgroup-list/subgroup-list.component";
 import {ProfessorListComponent} from "./secretary/professor-list/professor-list.component";
 import {StudentListComponent} from "./secretary/student-list/student-list.component";
@@ -43,6 +44,7 @@ import {LanguagePipe} from "./pipes/language.pipe";
 import {SolutionStudentService} from "./service/solutionstudent.service";
 import {SolutionService} from "./service/solution.service";
 import {TaskStudentsSolutionsComponent} from "./professor/students-solutions/task-students-solutions.component";
+import {NotificationsService} from "./service/notification.service";
 
 @NgModule({
   declarations: [
@@ -83,7 +85,7 @@ import {TaskStudentsSolutionsComponent} from "./professor/students-solutions/tas
   ],
   providers: [ProfessorListGuard, LoginService, SubgroupService, ProfessorService, ESProfessorBuilder, StudentService,
     ESStudentBuilder, TopicService, TaskService, TaskBuilder, DateParserService, SolutionStudentService,
-    SolutionService],
+    SolutionService, NotificationsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
