@@ -14,9 +14,9 @@ export class AuthenticationGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>|Promise<boolean>|boolean {
     let user: User = this.loginService.getAuthenticatedUser();
     let url: string = state.url;
-    let path: string = "/" + user.role.toLowerCase();
 
     if (user.username) {
+      let path: string = "/" + user.role.toLowerCase();
       if (url.startsWith(path)) {
         return true;
       }

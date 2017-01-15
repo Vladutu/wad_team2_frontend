@@ -45,11 +45,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let othStd of getOtherSimilarityFromMap(student.id)"
-                [ngClass]="{'success':othStd.similarityPercent < 20, 'warning':othStd.similarityPercent >=20 &&
-                othStd.similarityPercent <50, 'danger':othStd.similarityPercent >=50}">
+            <tr *ngFor="let othStd of getOtherSimilarityFromMap(student.id)">
               <td>{{othStd.firstName + ' ' + othStd.lastName + '(' + othStd.id + ')'}}</td>
-              <td>{{othStd.similarityPercent + ' %'}}</td>
+              <td [ngClass]="{'greenColor':othStd.similarityPercent < 20, 'yellowColor':othStd.similarityPercent >=20 &&
+                othStd.similarityPercent <50, 'redColor':othStd.similarityPercent >=50}">
+                {{othStd.similarityPercent + ' %'}}
+              </td>
               <td><a target="_blank" [href]="othStd.url">Click here</a></td>
             </tr>
           </tbody>
@@ -68,7 +69,7 @@
       <wad-loading [show]="requesting"></wad-loading>
       <div class="form-group">
         <label for="grade">Grade</label>
-        <input #gradeInput type="number" class="form-control" name="grade" id="grade" min="1" max="10"
+        <input #gradeInput type="number" class="form-control" name="grade" id="grade" min="0" max="100"
                formControlName="grade">
       </div>
     </modal-body>
