@@ -9,7 +9,6 @@ import {SubgroupListComponent} from "./secretary/subgroup-list/subgroup-list.com
 import {ProfessorListComponent} from "./secretary/professor-list/professor-list.component";
 import {StudentListComponent} from "./secretary/student-list/student-list.component";
 import {routing} from "./app.routes";
-import {ProfessorListGuard} from "./secretary/student-list/professor-list.guard";
 import {Ng2Bs3ModalModule} from "ng2-bs3-modal/ng2-bs3-modal";
 import {LoadingOverlayComponent} from "./loading-overlay/loading-overlay.component";
 import {GridModule} from "@progress/kendo-angular-grid";
@@ -45,6 +44,7 @@ import {SolutionService} from "./service/solution.service";
 import {TaskStudentsSolutionsComponent} from "./professor/students-solutions/task-students-solutions.component";
 import {NotificationsService} from "./service/notification.service";
 import {Notifications} from "./notification/notifications";
+import {AuthenticationGuard} from "./guard/authentication.guard";
 
 @NgModule({
   declarations: [
@@ -84,7 +84,7 @@ import {Notifications} from "./notification/notifications";
     Ng2Bs3ModalModule,
     GridModule
   ],
-  providers: [ProfessorListGuard, LoginService, SubgroupService, ProfessorService, ESProfessorBuilder, StudentService,
+  providers: [AuthenticationGuard, LoginService, SubgroupService, ProfessorService, ESProfessorBuilder, StudentService,
     ESStudentBuilder, TopicService, TaskService, TaskBuilder, DateParserService, SolutionStudentService,
     SolutionService, NotificationsService],
   bootstrap: [AppComponent]

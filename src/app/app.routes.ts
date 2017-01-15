@@ -7,15 +7,16 @@ import {STUDENT_ROUTES} from "./student/student.routes";
 import {ProfessorComponent} from "./professor/professor.component";
 import {PROFESSOR_ROUTES} from "./professor/professor.routes";
 import {TestComponent} from "./test/test.component";
+import {AuthenticationGuard} from "./guard/authentication.guard";
 
 const APP_ROUTES: Routes = [
-  {path: 'secretary', component: SecretaryComponent},
-  {path: 'secretary', component: SecretaryComponent, children: SECRETARY_ROUTES},
+  {path: 'secretary', component: SecretaryComponent, canActivate: [AuthenticationGuard]},
+  {path: 'secretary', component: SecretaryComponent, children: SECRETARY_ROUTES, canActivate: [AuthenticationGuard]},
   {path: 'login', component: LoginComponent},
-  {path: 'student', component: StudentComponent},
-  {path: 'student', component: StudentComponent, children: STUDENT_ROUTES},
-  {path: 'professor', component: ProfessorComponent},
-  {path: 'professor', component: ProfessorComponent, children: PROFESSOR_ROUTES},
+  {path: 'student', component: StudentComponent, canActivate: [AuthenticationGuard]},
+  {path: 'student', component: StudentComponent, children: STUDENT_ROUTES, canActivate: [AuthenticationGuard]},
+  {path: 'professor', component: ProfessorComponent, canActivate: [AuthenticationGuard]},
+  {path: 'professor', component: ProfessorComponent, children: PROFESSOR_ROUTES, canActivate: [AuthenticationGuard]},
   {path: 'ace', component: TestComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'}
 ];
