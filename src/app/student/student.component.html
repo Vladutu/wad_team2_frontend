@@ -13,6 +13,7 @@
         <li><a [routerLink]="['topics']">Topics</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li class="username">{{user.firstName + ' ' + user.lastName}}</li>
         <wad-notifications class="wad-notifications"></wad-notifications><!-- /dropdown -->
         <li class="dropdown" wad-dropdown>
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
