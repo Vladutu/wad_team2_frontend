@@ -28,7 +28,7 @@
               <div class="panel-body panel-task cursor-hand"><a>{{task.name}}</a>
                 <div class="btn-group btn-group-xs pull-right">
                   <span class="label" [ngClass]="{'label-success':task.solutionSent,'label-danger':!task.solutionSent}">
-                    {{task.solutionSent?'Solution sent':'Solution not send'}}</span>
+                    {{task.solutionSent?'Solution sent':'Solution not sent'}}</span>
                   <span class="label label-default">{{task.testsEnabled?'Automated Test':'Manual Test'}}</span>
                   <span class="label label-danger">Deadline: {{task.deadline}}</span>
                   <span class="label"
